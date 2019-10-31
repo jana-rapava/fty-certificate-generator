@@ -19,8 +19,8 @@
     =========================================================================
 */
 
-#ifndef FTY_TEMPLATE_H_H_INCLUDED
-#define FTY_TEMPLATE_H_H_INCLUDED
+#ifndef FTY_CERTIFICATE_GENERATOR_H_H_INCLUDED
+#define FTY_CERTIFICATE_GENERATOR_H_H_INCLUDED
 
 //  Include the project library file
 #include "fty_certificate_generator_library.h"

@@ -30,7 +30,7 @@
 #include "platform.h"
 
 //  External API
-#include "../include/fty_template.h"
+#include "../include/fty-certificate-generator.h"
 
 //  Opaque class structures to allow forward references
 

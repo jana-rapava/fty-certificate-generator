@@ -31,7 +31,7 @@
 
 //  External dependencies
 #include <fty_log.h>
-#include <fty_lib_certificate.h>
+#include <fty-lib-certificate.h>
 
 //  FTY_CERTIFICATE_GENERATOR version macros for compile-time API detection
 #define FTY_CERTIFICATE_GENERATOR_VERSION_MAJOR 1

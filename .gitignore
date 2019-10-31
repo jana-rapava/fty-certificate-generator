@@ -25,6 +25,7 @@ save.xml
 # Executables
 src/fty-certificate-generator_selftest
 src/fty-certificate-generator
+src/fty_certificate_generator_selftest
 *.exe
 *.out
 *.app

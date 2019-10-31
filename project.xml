@@ -6,7 +6,6 @@
     url = "https://42ity.org"
     license = "GPL-2.0+"
     repository = "https://github.com/42ity/fty-certificate-generator"
-    header = "fty_template.h"
     >
 
     <!-- Here we define for which package type we want to get a package -->
@@ -63,7 +62,7 @@
             />
     </use>
 
-    <use project = "fty-lib-certificate" libname = "libfty_lib_certificate" header="fty_lib_certificate.h"
+    <use project = "fty-lib-certificate" libname = "libfty_lib_certificate"
         repository = "https://github.com/42ity/fty-lib-certificate.git"
         release = "master" >
 

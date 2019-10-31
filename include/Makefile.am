@@ -3,7 +3,7 @@
 #  Read the zproject/README.md for information about making permanent changes. #
 ################################################################################
 nobase_include_HEADERS = \
-    fty_template.h \
+    fty-certificate-generator.h \
     fty_certificate_generator_library.h
 
 if ENABLE_DRAFTS
