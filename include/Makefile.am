@@ -4,11 +4,11 @@
 ################################################################################
 nobase_include_HEADERS = \
     fty_template.h \
-    fty_template_library.h
+    fty_certificate_generator_library.h
 
 if ENABLE_DRAFTS
 nobase_include_HEADERS += \
-    fty_template_class_example.h
+    fty-certificate-generator-agent.h
 
 endif
 

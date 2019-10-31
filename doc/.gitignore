@@ -11,6 +11,8 @@
 *.xml7
 
 # Ignore the source doc texts generated from program sources
+fty_certificate_generator_agent.txt
+fty_certificate_generator_agent.doc
 fty-certificate-generator.txt
 fty-certificate-generator.doc
 

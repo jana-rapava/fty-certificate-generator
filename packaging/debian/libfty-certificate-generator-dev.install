@@ -1,0 +1,3 @@
+usr/include/*
+usr/lib/*/libfty_certificate_generator.so
+usr/lib/*/pkgconfig/libfty_certificate_generator.pc

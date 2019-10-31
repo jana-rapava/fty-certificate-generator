@@ -656,6 +656,16 @@ AC_ARG_ENABLE([fty-certificate-generator],
 AM_CONDITIONAL([ENABLE_FTY_CERTIFICATE_GENERATOR], [test x$enable_fty_certificate_generator != xno])
 AM_COND_IF([ENABLE_FTY_CERTIFICATE_GENERATOR], [AC_MSG_NOTICE([ENABLE_FTY_CERTIFICATE_GENERATOR defined])])
 
+# Check for fty_certificate_generator_selftest intent
+AC_ARG_ENABLE([fty_certificate_generator_selftest],
+    AS_HELP_STRING([--enable-fty_certificate_generator_selftest],
+        [Compile 'fty_certificate_generator_selftest' in src [default=yes]]),
+    [enable_fty_certificate_generator_selftest=$enableval],
+    [enable_fty_certificate_generator_selftest=yes])
+
+AM_CONDITIONAL([ENABLE_FTY_CERTIFICATE_GENERATOR_SELFTEST], [test x$enable_fty_certificate_generator_selftest != xno])
+AM_COND_IF([ENABLE_FTY_CERTIFICATE_GENERATOR_SELFTEST], [AC_MSG_NOTICE([ENABLE_FTY_CERTIFICATE_GENERATOR_SELFTEST defined])])
+
 # Checks for library functions.
 AC_TYPE_SIGNAL
 AC_CHECK_FUNCS(perror gettimeofday memset getifaddrs)
@@ -744,6 +754,9 @@ AS_IF([test "x$enable_Werror" = "xyes" || test "x$enable_Werror" = "xauto"],
 
 # Specify output files
 AC_CONFIG_FILES([Makefile
+                 doc/Makefile
+                 include/Makefile
+                 src/libfty_certificate_generator.pc
                  src/fty-certificate-generator.cfg
                 ])
 

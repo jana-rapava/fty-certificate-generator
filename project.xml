@@ -71,5 +71,8 @@
 
     </use>
 
+
+    
+    <class name = "fty-certificate-generator-agent"/>
     <main  name = "fty-certificate-generator" service = "1"/>
 </project>

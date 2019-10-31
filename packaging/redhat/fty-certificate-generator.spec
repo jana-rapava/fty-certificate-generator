@@ -60,6 +60,41 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 %description
 fty-certificate-generator generation internal certificates agent.
 
+%package -n libfty_certificate_generator1
+Group:          System/Libraries
+Summary:        generation internal certificates agent shared library
+
+%description -n libfty_certificate_generator1
+This package contains shared library for fty-certificate-generator: generation internal certificates agent
+
+%post -n libfty_certificate_generator1 -p /sbin/ldconfig
+%postun -n libfty_certificate_generator1 -p /sbin/ldconfig
+
+%files -n libfty_certificate_generator1
+%defattr(-,root,root)
+%{_libdir}/libfty_certificate_generator.so.*
+
+%package devel
+Summary:        generation internal certificates agent
+Group:          System/Libraries
+Requires:       libfty_certificate_generator1 = %{version}
+Requires:       log4cplus-devel
+Requires:       fty-common-logging-devel
+Requires:       openssl-devel
+Requires:       fty-lib-certificate-devel
+
+%description devel
+generation internal certificates agent development tools
+This package contains development files for fty-certificate-generator: generation internal certificates agent
+
+%files devel
+%defattr(-,root,root)
+%{_includedir}/*
+%{_libdir}/libfty_certificate_generator.so
+%{_libdir}/pkgconfig/libfty_certificate_generator.pc
+%{_mandir}/man3/*
+%{_mandir}/man7/*
+
 %prep
 
 %setup -q
