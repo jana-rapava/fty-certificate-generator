@@ -63,10 +63,9 @@
             />
     </use>
 
-    <use project = "fty-lib-certificate" libname = "libfty_lib_certificate" header = "fty_lib_certificate.h"
-        repository = "https://github.com/42ity/fty-common-logging.git"
-        release = "master"
-        test = "fty_lib_certificae_selftest" >
+    <use project = "fty-lib-certificate" libname = "libfty_lib_certificate" header="fty_lib_certificate.h"
+        repository = "https://github.com/42ity/fty-lib-certificate.git"
+        release = "master" >
 
         <use project = "openssl" header = "openssl/sha.h" debian_name = "libssl-dev"/>
 

@@ -265,7 +265,7 @@ default|default-Werror|default-with-docs|valgrind|clang-format-check)
         BASE_PWD=${PWD}
         echo "`date`: INFO: Building prerequisite 'fty-lib-certificate' from Git repository..." >&2
         cd ./tmp-deps
-        $CI_TIME git clone --quiet --depth 1 -b master https://github.com/42ity/fty-common-logging.git fty-lib-certificate
+        $CI_TIME git clone --quiet --depth 1 -b master https://github.com/42ity/fty-lib-certificate.git fty-lib-certificate
         cd ./fty-lib-certificate
         CCACHE_BASEDIR=${PWD}
         export CCACHE_BASEDIR
