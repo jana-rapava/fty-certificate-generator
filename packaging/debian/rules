@@ -35,18 +35,19 @@ $(shell dpkg --compare-versions `dpkg-query -W -f='$${Version}\n' automake` lt 1
 $(shell test -f src/Makemodule-local.am || touch src/Makemodule-local.am)
 
 override_dh_strip:
-	dh_strip --dbg-package=fty-template-dbg
+	dh_strip --dbg-package=fty-certificate-generator-dbg
 
 override_dh_auto_test:
 	echo "Skipped for now"
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
+		--with-systemd-units \
 		--with-docs=$(DOCS) \
 		--enable-drafts=$(DRAFTS)
 
 %:
 	dh $@ \
+		--with systemd \
 		--parallel \
 		--with autoreconf
-

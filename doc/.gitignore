@@ -11,8 +11,8 @@
 *.xml7
 
 # Ignore the source doc texts generated from program sources
-fty_template_class_example.txt
-fty_template_class_example.doc
+fty-certificate-generator.txt
+fty-certificate-generator.doc
 
 # Make sure to track the manually maintained project description
 !*.adoc

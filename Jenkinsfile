@@ -1,5 +1,5 @@
 /*
-    fty-template - Derscritpion of your agent or lib
+    fty-certificate-generator - Generation internal certificates agent
 
     Copyright (C) 2014 - 2019 Eaton
 

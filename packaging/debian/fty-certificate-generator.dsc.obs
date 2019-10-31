@@ -1,0 +1,19 @@
+Format: 3.0 (quilt)
+Binary: fty-certificate-generator
+Source: fty-certificate-generator
+Version: 1.0.0
+Maintainer: fty-certificate-generator Developers <eatonipcopensource@eaton.com>
+Architecture: any
+Build-Depends: debhelper (>= 9),
+    pkg-config,
+    liblog4cplus-dev,
+    libfty-common-logging-dev,
+    libssl-dev,
+    libfty-lib-certificate-dev,
+    systemd,
+    dh-systemd,
+    asciidoc-base | asciidoc, xmlto,
+    dh-autoreconf
+
+Files:
+ 7697688bf65a35bc33ae2db51ebb0e3b 818110 fty-certificate-generator.tar.gz

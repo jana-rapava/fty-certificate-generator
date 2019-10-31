@@ -1,0 +1,4 @@
+usr/bin/fty-certificate-generator
+etc/fty-certificate-generator/fty-certificate-generator.cfg
+lib/systemd/system/fty-certificate-generator.service
+

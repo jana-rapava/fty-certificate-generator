@@ -11,7 +11,7 @@ set -e
 if [ "$BUILD_TYPE" == "default" ]; then
     # Tell travis to deploy all files in dist
     mkdir dist
-    export FTY_TEMPLATE_DEPLOYMENT=dist/*
+    export FTY_CERTIFICATE_GENERATOR_DEPLOYMENT=dist/*
     # Move archives to dist
     mv *.tar.gz dist
     mv *.zip dist
@@ -22,8 +22,8 @@ if [ "$BUILD_TYPE" == "default" ]; then
     cd -
 elif [ "$BUILD_TYPE" == "bindings" ] && [ "$BINDING" == "jni" ]; then
     ( cd bindings/jni && TERM=dumb PKG_CONFIG_PATH=/tmp/lib/pkgconfig ./gradlew clean bintrayUpload )
-    cp bindings/jni/android/fty_template-android.jar fty_template-android-1.0.0.jar
-    export FTY_TEMPLATE_DEPLOYMENT=fty_template-android-1.0.0.jar
+    cp bindings/jni/android/fty_certificate_generator-android.jar fty_certificate_generator-android-1.0.0.jar
+    export FTY_CERTIFICATE_GENERATOR_DEPLOYMENT=fty_certificate_generator-android-1.0.0.jar
 else
-    export FTY_TEMPLATE_DEPLOYMENT=""
+    export FTY_CERTIFICATE_GENERATOR_DEPLOYMENT=""
 fi

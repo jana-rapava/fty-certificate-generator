@@ -1,11 +1,11 @@
 <project
-    name = "fty-template"
-    description = "Derscritpion of your agent or lib"
+    name = "fty-certificate-generator"
+    description = "Generation internal certificates agent"
     script = "zproject.gsl"
     email = "EatonIPCOpenSource@eaton.com"
     url = "https://42ity.org"
     license = "GPL-2.0+"
-    repository = "https://github.com/42ity/fty-template"
+    repository = "https://github.com/42ity/fty-certificate-generator"
     header = "fty_template.h"
     >
 
@@ -52,7 +52,6 @@
         pretty-print = "no" keep-tree = "true" />
 
     <!-- Here we define dependencies, and dependencies of dependencies.... -->
-    <!-- Example with fty-common-logging which is necessary almost all the time -->
     <use project = "fty-common-logging" libname = "libfty_common_logging" header = "fty_log.h"
         repository = "https://github.com/42ity/fty-common-logging.git"
         release = "master"
@@ -64,10 +63,14 @@
             />
     </use>
 
+    <use project = "fty-lib-certificate" libname = "libfty_lib_certificate" header = "fty_lib_certificate.h"
+        repository = "https://github.com/42ity/fty-common-logging.git"
+        release = "master"
+        test = "fty_lib_certificae_selftest" >
 
-    <!-- Here we the name of the class -->
-    <class name = "fty_template_class_example" selftest = "0" private = "0"/>
+        <use project = "openssl" header = "openssl/sha.h" debian_name = "libssl-dev"/>
 
-    <!-- For header only use: <header name ="fty_XXXX" /> -->
-    <!-- For main use (with service for a daemon): <main  name = "fty_XXX" service = "1"/> -->
+    </use>
+
+    <main  name = "fty-certificate-generator" service = "1"/>
 </project>

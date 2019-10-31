@@ -1,5 +1,5 @@
 #
-#    fty-template - Derscritpion of your agent or lib
+#    fty-certificate-generator - Generation internal certificates agent
 #
 #    Copyright (C) 2014 - 2019 Eaton
 #
@@ -17,24 +17,36 @@
 #    with this program; if not, write to the Free Software Foundation, Inc.,
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-Source:         fty-template
+Source:         fty-certificate-generator
 Section:        net
 Priority:       optional
-Maintainer:     fty-template Developers <eatonipcopensource@eaton.com>
+Maintainer:     fty-certificate-generator Developers <eatonipcopensource@eaton.com>
 Standards-Version: 4.0.1.0
 Build-Depends: debhelper (>= 9),
     pkg-config,
     liblog4cplus-dev,
     libfty-common-logging-dev,
+    libssl-dev,
+    libfty-lib-certificate-dev,
+    systemd,
+    dh-systemd,
     asciidoc-base | asciidoc, xmlto,
     dh-autoreconf
 
-Package: fty-template-dbg
+Package: fty-certificate-generator
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends},
+Description: runnable binaries from fty-certificate-generator
+ Main package for fty-certificate-generator:
+ generation internal certificates agent
+
+Package: fty-certificate-generator-dbg
 Architecture: any
 Section: debug
 Priority: optional
 Depends:
+    fty-certificate-generator (= ${binary:Version}),
     ${misc:Depends}
-Description: fty-template debugging symbols
- This package contains the debugging symbols for fty-template:
- derscritpion of your agent or lib.
+Description: fty-certificate-generator debugging symbols
+ This package contains the debugging symbols for fty-certificate-generator:
+ generation internal certificates agent.
