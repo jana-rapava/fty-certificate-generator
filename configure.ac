@@ -432,15 +432,15 @@ AS_IF([test x"${search_libfty_lib_certificate}" = xyes], [
         fty_lib_certificate_synthetic_libs="-lfty-lib-certificate"
 
         if test -n "${with_libfty_lib_certificate}" && test x"${with_libfty_lib_certificate}" != xyes && test x"${with_libfty_lib_certificate}" != xno; then
-            if test -r "${with_libfty_lib_certificate}/include/fty_lib_certificate.h"; then
+            if test -r "${with_libfty_lib_certificate}/include/fty-lib-certificate.h"; then
                 fty_lib_certificate_synthetic_cflags="-I${with_libfty_lib_certificate}/include"
                 fty_lib_certificate_synthetic_libs="-L${with_libfty_lib_certificate}/lib -lfty-lib-certificate"
             else
-            AC_MSG_ERROR([Header file ${with_libfty_lib_certificate}/include/fty_lib_certificate.h was not found. Please check libfty_lib_certificate prefix])
+            AC_MSG_ERROR([Header file ${with_libfty_lib_certificate}/include/fty-lib-certificate.h was not found. Please check libfty_lib_certificate prefix])
             fi
         else
-            AC_CHECK_HEADER([fty_lib_certificate.h], [],
-            AC_MSG_ERROR([Header file fty_lib_certificate.h was not found in default search paths])
+            AC_CHECK_HEADER([fty-lib-certificate.h], [],
+            AC_MSG_ERROR([Header file fty-lib-certificate.h was not found in default search paths])
                 )
         fi
 
