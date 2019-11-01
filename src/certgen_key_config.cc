@@ -26,43 +26,56 @@
 @end
 */
 
-#include "fty_certificate_generator_classes.h"
+#include "certgen_key_config.h"
 
 //  Structure of our class
-
-struct _certgen_key_config_t {
-    int filler;     //  Declare class properties here
-};
-
-
-//  --------------------------------------------------------------------------
-//  Create a new certgen_key_config
-
-certgen_key_config_t *
-certgen_key_config_new (void)
+namespace certgen
 {
-    certgen_key_config_t *self = (certgen_key_config_t *) zmalloc (sizeof (certgen_key_config_t));
-    assert (self);
-    //  Initialize class properties here
-    return self;
-}
+    // Static functions map
+    std::map<std::string, std::function< KeyConfigParamsPtr() >> factoryFunctions =
+    {
+        { "RSA", []() { return KeyConfigParamsPtr(new KeyConfigRsaParams()); }},
+        { "EC",  []() { return KeyConfigParamsPtr(new KeyConfigECParams()); }}
+    };
 
+    // KeyConfig
+    void KeyConfig::load(const cxxtools::SerializationInfo& si)
+    {
+        si.getMember("key_type") >>= m_keyType;
 
-//  --------------------------------------------------------------------------
-//  Destroy the certgen_key_config
-
-void
-certgen_key_config_destroy (certgen_key_config_t **self_p)
-{
-    assert (self_p);
-    if (*self_p) {
-        certgen_key_config_t *self = *self_p;
-        //  Free class properties here
-        //  Free object itself
-        free (self);
-        *self_p = NULL;
+        m_params = KeyConfigParams::create(m_keyType);
+        
+        si.getMember("key_params") >>= *(m_params);
     }
-}
+
+    void operator>>= (const cxxtools::SerializationInfo& si, KeyConfig & config)
+    {
+        config.load(si);
+    }
+
+// StorageConfigParams
+    KeyConfigParamsPtr KeyConfigParams::create(const std::string & keyType)
+    {
+        return (factoryFunctions.at(keyType))();
+    }
+
+    void operator>>= (const cxxtools::SerializationInfo& si, KeyConfigParams & configParams)
+    {
+        configParams.load(si);
+    }
+
+    void KeyConfigRsaParams::load(const cxxtools::SerializationInfo& si)
+    {
+        si.getMember("rsa_length") >>= m_rsaLength;
+    }
+
+    void KeyConfigECParams::load(const cxxtools::SerializationInfo& si)
+    {
+        si.getMember("ec_curve_type") >>= m_ecCurveType;
+    }
+
+} // namescpace certgen
+
 
 //  --------------------------------------------------------------------------
 //  Self test of this class
