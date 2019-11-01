@@ -42,4 +42,6 @@ extern "C" {
 }
 #endif
 
+void certgen_key_config_test (bool verbose);
+
 #endif

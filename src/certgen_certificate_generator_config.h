@@ -24,43 +24,12 @@
 
 namespace certgen
 {
-    class KeyConfig
-    {
-
-    };
-    class CertificateConfig
-    {
-
-    };
-
-    class StorageConfig
-    {
-
-    };
-
     class CertificateGeneratorConfig
     {
 
     };
 } // namescpace certgen
 
-//  --------------------------------------------------------------------------
-//  Self test of this class
-
-#define SELFTEST_DIR_RO "src/selftest-ro"
-#define SELFTEST_DIR_RW "src/selftest-rw"
-
-void
-certgen_certificate_generator_config_test (bool verbose)
-{
-    printf (" * certgen_certificate_generator_config: ");
-
-    //  @selftest
-    //  Simple create/destroy test
-
-    //  @end
-    printf ("OK\n");
-}
-
+void certgen_certificate_generator_config_test (bool verbose);
 
 #endif

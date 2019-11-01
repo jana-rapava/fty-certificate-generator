@@ -64,3 +64,17 @@ certgen_key_config_destroy (certgen_key_config_t **self_p)
     }
 }
 
+//  --------------------------------------------------------------------------
+//  Self test of this class
+#define SELFTEST_DIR_RO "src/selftest-ro"
+#define SELFTEST_DIR_RW "src/selftest-rw"
+
+void certgen_key_config_test (bool verbose)
+{
+    printf (" * certgen_key_config: ");
+
+    //  @selftest
+    //  Simple create/destroy test
+    //  @end
+    printf ("OK\n");
+}
