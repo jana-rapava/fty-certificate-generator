@@ -57,7 +57,7 @@ namespace certgen
 
         const std::string & storageType() const { return m_storageType; }
         bool isPermanent() const { return m_permanent; }
-        const StorageConfigParamsPtr & parms() const { return m_params; } 
+        const StorageConfigParamsPtr & params() const { return m_params; } 
     };
     void operator>>= (const cxxtools::SerializationInfo& si, StorageConfig & config);
 
