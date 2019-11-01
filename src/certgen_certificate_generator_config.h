@@ -22,6 +22,9 @@
 #ifndef CERTGEN_CERTIFICATE_GENERATOR_CONFIG_H_INCLUDED
 #define CERTGEN_CERTIFICATE_GENERATOR_CONFIG_H_INCLUDED
 
+#include <cxxtools/jsonserializer.h>
+#include <cxxtools/jsondeserializer.h>
+
 namespace certgen
 {
     class KeyConfig
@@ -30,7 +33,15 @@ namespace certgen
     };
     class CertificateConfig
     {
-
+        public:
+            explicit CertificateConfig (const cxxtools::SerializationInfo & si);
+            void deserialize (const cxxtools::SerializationInfo & si);
+            void serialize (cxxtools::SerializationInfo & si) const;
+        private:
+            std::string m_signatureType;
+            uint32_t m_validity;
+            int m_validityOffset;
+            uint8_t m_certificateLevel;
     };
 
     class StorageConfig
@@ -40,7 +51,7 @@ namespace certgen
 
     class CertificateGeneratorConfig
     {
-
+        
     };
 } // namescpace certgen
 
