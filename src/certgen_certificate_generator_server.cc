@@ -30,37 +30,9 @@
 
 //  Structure of our class
 
-struct _certgen_certificate_generator_server_t {
-    int filler;     //  Declare class properties here
-};
-
-
-//  --------------------------------------------------------------------------
-//  Create a new certgen_certificate_generator_server
-
-certgen_certificate_generator_server_t *
-certgen_certificate_generator_server_new (void)
+namespace certgen
 {
-    certgen_certificate_generator_server_t *self = (certgen_certificate_generator_server_t *) zmalloc (sizeof (certgen_certificate_generator_server_t));
-    assert (self);
-    //  Initialize class properties here
-    return self;
-}
 
+} // namescpace certgen
 
-//  --------------------------------------------------------------------------
-//  Destroy the certgen_certificate_generator_server
-
-void
-certgen_certificate_generator_server_destroy (certgen_certificate_generator_server_t **self_p)
-{
-    assert (self_p);
-    if (*self_p) {
-        certgen_certificate_generator_server_t *self = *self_p;
-        //  Free class properties here
-        //  Free object itself
-        free (self);
-        *self_p = NULL;
-    }
-}
 

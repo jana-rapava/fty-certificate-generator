@@ -22,24 +22,27 @@
 #ifndef CERTGEN_CERTIFICATE_GENERATOR_CONFIG_H_INCLUDED
 #define CERTGEN_CERTIFICATE_GENERATOR_CONFIG_H_INCLUDED
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+namespace certgen
+{
+    class KeyConfig
+    {
 
-//  @interface
-//  Create a new certgen_certificate_generator_config
-FTY_CERTIFICATE_GENERATOR_PRIVATE certgen_certificate_generator_config_t *
-    certgen_certificate_generator_config_new (void);
+    };
+    class CertificateConfig
+    {
 
-//  Destroy the certgen_certificate_generator_config
-FTY_CERTIFICATE_GENERATOR_PRIVATE void
-    certgen_certificate_generator_config_destroy (certgen_certificate_generator_config_t **self_p);
+    };
 
+    class StorageConfig
+    {
 
-//  @end
+    };
 
-#ifdef __cplusplus
-}
-#endif
+    class CertificateGeneratorConfig
+    {
+        
+    };
+} // namescpace certgen
+
 
 #endif

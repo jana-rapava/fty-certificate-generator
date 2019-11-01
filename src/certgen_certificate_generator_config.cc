@@ -29,38 +29,9 @@
 #include "fty_certificate_generator_classes.h"
 
 //  Structure of our class
-
-struct _certgen_certificate_generator_config_t {
-    int filler;     //  Declare class properties here
-};
-
-
-//  --------------------------------------------------------------------------
-//  Create a new certgen_certificate_generator_config
-
-certgen_certificate_generator_config_t *
-certgen_certificate_generator_config_new (void)
+namespace certgen
 {
-    certgen_certificate_generator_config_t *self = (certgen_certificate_generator_config_t *) zmalloc (sizeof (certgen_certificate_generator_config_t));
-    assert (self);
-    //  Initialize class properties here
-    return self;
-}
 
+} // namescpace certgen
 
-//  --------------------------------------------------------------------------
-//  Destroy the certgen_certificate_generator_config
-
-void
-certgen_certificate_generator_config_destroy (certgen_certificate_generator_config_t **self_p)
-{
-    assert (self_p);
-    if (*self_p) {
-        certgen_certificate_generator_config_t *self = *self_p;
-        //  Free class properties here
-        //  Free object itself
-        free (self);
-        *self_p = NULL;
-    }
-}
 

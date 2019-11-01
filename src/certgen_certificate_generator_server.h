@@ -22,24 +22,10 @@
 #ifndef CERTGEN_CERTIFICATE_GENERATOR_SERVER_H_INCLUDED
 #define CERTGEN_CERTIFICATE_GENERATOR_SERVER_H_INCLUDED
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+namespace certgen
+{
 
-//  @interface
-//  Create a new certgen_certificate_generator_server
-FTY_CERTIFICATE_GENERATOR_PRIVATE certgen_certificate_generator_server_t *
-    certgen_certificate_generator_server_new (void);
+} // namescpace certgen
 
-//  Destroy the certgen_certificate_generator_server
-FTY_CERTIFICATE_GENERATOR_PRIVATE void
-    certgen_certificate_generator_server_destroy (certgen_certificate_generator_server_t **self_p);
-
-
-//  @end
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif
