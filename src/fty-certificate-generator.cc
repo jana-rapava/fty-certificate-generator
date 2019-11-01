@@ -49,7 +49,7 @@ int main (int argc, char *argv [])
             return 1;
         }
     }
-    
+
     if (verbose)
         //zsys_info ("fty-certificate-generator - ");
 

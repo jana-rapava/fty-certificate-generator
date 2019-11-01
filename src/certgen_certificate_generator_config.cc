@@ -52,3 +52,4 @@ certgen_certificate_generator_config_test (bool verbose)
     //  @end
     printf ("OK\n");
 }
+

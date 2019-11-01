@@ -35,6 +35,9 @@ extern "C" {
  void
     certgen_key_config_destroy (certgen_key_config_t **self_p);
 
+//  Self test of this class
+ void
+    certgen_key_config_test (bool verbose);
 
 //  @end
 

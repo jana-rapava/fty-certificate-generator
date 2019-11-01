@@ -28,6 +28,21 @@
 
 #include "fty_certificate_generator_classes.h"
 
+//  Structure of our class
+namespace certgen
+{
+    void CertificateConfig::deserialize (const cxxtools::SerializationInfo & si)
+    {
+        si.getMember("signature_type") >>= m_signatureType;
+
+        si.getMember("validity") >>= m_validity;
+
+        si.getMember("validity_offset") >>= m_validityOffset;
+
+        si.getMember("certificate_level") >>= m_certificateLevel;
+    }
+
+} // namescpace certgen
 
 //  --------------------------------------------------------------------------
 //  Self test of this class
