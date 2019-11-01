@@ -1,5 +1,5 @@
 /*  =========================================================================
-    certgen_certificate_generator_config - class description
+    certgen_certificate_config - class description
 
     Copyright (C) 2014 - 2019 Eaton
 
@@ -19,20 +19,30 @@
     =========================================================================
 */
 
-/*
-@header
-    certgen_certificate_generator_config -
-@discuss
-@end
-*/
+#ifndef CERTGEN_CERTIFICATE_CONFIG_H_INCLUDED
+#define CERTGEN_CERTIFICATE_CONFIG_H_INCLUDED
 
-#include "fty_certificate_generator_classes.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-//  Structure of our class
-namespace certgen
-{
+//  @interface
+//  Create a new certgen_certificate_config
+ certgen_certificate_config_t *
+    certgen_certificate_config_new (void);
 
-} // namescpace certgen
+//  Destroy the certgen_certificate_config
+ void
+    certgen_certificate_config_destroy (certgen_certificate_config_t **self_p);
 
-void
-certgen_certificate_generator_config_test (bool verbose);
+//  Self test of this class
+ void
+    certgen_certificate_config_test (bool verbose);
+
+//  @end
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

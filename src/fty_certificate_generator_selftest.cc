@@ -40,6 +40,15 @@ typedef struct {
 static test_item_t
 all_tests [] = {
 #ifdef FTY_CERTIFICATE_GENERATOR_BUILD_DRAFT_API
+// Tests for stable/draft private classes:
+// Now built only with --enable-drafts, so even stable builds are hidden behind the flag
+    { "certgen_certificate_generator_config", NULL, true, false, "certgen_certificate_generator_config_test" },
+    { "certgen_certificate_config", NULL, true, false, "certgen_certificate_config_test" },
+    { "certgen_key_config", NULL, true, false, "certgen_key_config_test" },
+    { "certgen_storage_config", NULL, true, false, "certgen_storage_config_test" },
+    { "private_classes", NULL, false, false, "$ALL" }, // compat option for older projects
+#endif // FTY_CERTIFICATE_GENERATOR_BUILD_DRAFT_API
+#ifdef FTY_CERTIFICATE_GENERATOR_BUILD_DRAFT_API
 // Tests for draft public classes:
     { "fty_certificate_generator_agent", fty_certificate_generator_agent_test, false, true, NULL },
 #endif // FTY_CERTIFICATE_GENERATOR_BUILD_DRAFT_API

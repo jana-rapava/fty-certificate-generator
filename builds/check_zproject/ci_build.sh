@@ -11,11 +11,11 @@ set -ex
 cd "$REPO_DIR/.."
 git clone --quiet --depth 1 -b 1.1.2-FTY-master https://github.com/42ity/log4cplus.git log4cplus
 git clone --quiet --depth 1 -b master https://github.com/42ity/fty-common-logging.git fty-common-logging
+git clone --quiet --depth 1 -b release/IPM-2.0.0 https://github.com/42ity/cxxtools.git cxxtools
 git clone --quiet --depth 1 -b master https://github.com/42ity/fty-lib-certificate.git fty-lib-certificate
 git clone --quiet --depth 1 -b release/IPM-2.0.0 https://github.com/42ity/libsodium.git libsodium
 git clone --quiet --depth 1 -b release/IPM-2.0.0 https://github.com/42ity/libzmq.git libzmq
 git clone --quiet --depth 1 -b release/IPM-2.0.0 https://github.com/42ity/czmq.git czmq
-git clone --quiet --depth 1 -b release/IPM-2.0.0 https://github.com/42ity/cxxtools.git cxxtools
 git clone --quiet --depth 1 -b release/IPM-2.0.0 https://github.com/42ity/malamute.git malamute
 git clone --quiet --depth 1 -b release/IPM-2.0.0 https://github.com/42ity/fty-common.git fty-common
 git clone --quiet --depth 1 -b release/IPM-2.0.0 https://github.com/42ity/fty-common-mlm.git fty-common-mlm

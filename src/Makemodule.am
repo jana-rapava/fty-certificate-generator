@@ -15,6 +15,9 @@ pkgconfig_DATA = src/libfty_certificate_generator.pc
 src_libfty_certificate_generator_la_SOURCES = \
     src/certgen_certificate_generator_server.cc \
     src/certgen_certificate_generator_config.cc \
+    src/certgen_certificate_config.cc \
+    src/certgen_key_config.cc \
+    src/certgen_storage_config.cc \
     src/platform.h
 
 if ENABLE_DRAFTS

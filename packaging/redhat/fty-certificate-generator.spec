@@ -50,15 +50,19 @@ BuildRequires:  systemd-devel
 BuildRequires:  systemd
 %{?systemd_requires}
 BuildRequires:  xmlto
-BuildRequires:  gcc-c++
+# Note that with current implementation of zproject use-cxx-gcc-4-9 option,
+# this effectively hardcodes the use of specifically 4.9, not allowing for
+# "4.9 or newer".
+BuildRequires:  devtoolset-3-gcc devtoolset-3-gcc-c++
+BuildRequires:  gcc-c++ >= 4.9.0
 BuildRequires:  log4cplus-devel
 BuildRequires:  fty-common-logging-devel
+BuildRequires:  cxxtools-devel
 BuildRequires:  openssl-devel
 BuildRequires:  fty-lib-certificate-devel
 BuildRequires:  libsodium-devel
 BuildRequires:  zeromq-devel
 BuildRequires:  czmq-devel >= 3.0.2
-BuildRequires:  cxxtools-devel
 BuildRequires:  malamute-devel >= 1.0.0
 BuildRequires:  fty-common-devel
 BuildRequires:  fty-common-mlm-devel
@@ -88,12 +92,12 @@ Group:          System/Libraries
 Requires:       libfty_certificate_generator1 = %{version}
 Requires:       log4cplus-devel
 Requires:       fty-common-logging-devel
+Requires:       cxxtools-devel
 Requires:       openssl-devel
 Requires:       fty-lib-certificate-devel
 Requires:       libsodium-devel
 Requires:       zeromq-devel
 Requires:       czmq-devel >= 3.0.2
-Requires:       cxxtools-devel
 Requires:       malamute-devel >= 1.0.0
 Requires:       fty-common-devel
 Requires:       fty-common-mlm-devel

@@ -47,10 +47,12 @@
     <abi current = "1" revision = "0" age = "0" />
 
     <!-- Here we enable c++ -->
-    <classfilename use-cxx = "true" source-extension = "cc" header-extension = "h"
+    <classfilename use-cxx = "true" source-extension = "cc" header-extension = "h" use-cxx-gcc-4-9 = "true"
         pretty-print = "no" keep-tree = "true" />
 
     <!-- Here we define dependencies, and dependencies of dependencies.... -->
+
+    <!-- fty-common-logging -->
     <use project = "fty-common-logging" libname = "libfty_common_logging" header = "fty_log.h"
         repository = "https://github.com/42ity/fty-common-logging.git"
         release = "master"
@@ -61,6 +63,12 @@
             release = "1.1.2-FTY-master"
             />
     </use>
+
+    <!-- cxxtools -->
+    <use project = "cxxtools" test = "cxxtools::Utf8Codec::Utf8Codec" header = "cxxtools/allocator.h"
+        repository = "https://github.com/42ity/cxxtools.git"
+        release = "release/IPM-2.0.0"
+        />
 
     <!-- fty-lib-certificate -->
     <use project = "fty-lib-certificate" libname = "libfty_lib_certificate"
@@ -205,9 +213,13 @@
         </use>
     </use>
 
-    <!-- Note: Certificate generator -->
+    <!-- Note: Certificate generator class files -->
     <class name = "certgen_certificate_generator_server" private = "1" selftest = "0"/>
-    <class name = "certgen_certificate_generator_config" private = "1" selftest = "0"/>
+
+    <class name = "certgen_certificate_generator_config" private = "1"/>
+    <class name = "certgen_certificate_config" private = "1"/>
+    <class name = "certgen_key_config" private = "1" />
+    <class name = "certgen_storage_config" private = "1"/>
     
     <class name = "certgen_accessor" selftest = "0"/>
 

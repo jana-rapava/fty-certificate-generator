@@ -14,12 +14,12 @@ AM_CXXFLAGS = \
 AM_CPPFLAGS = \
     ${log4cplus_CFLAGS} \
     ${fty_common_logging_CFLAGS} \
+    ${cxxtools_CFLAGS} \
     ${openssl_CFLAGS} \
     ${fty_lib_certificate_CFLAGS} \
     ${libsodium_CFLAGS} \
     ${libzmq_CFLAGS} \
     ${czmq_CFLAGS} \
-    ${cxxtools_CFLAGS} \
     ${malamute_CFLAGS} \
     ${fty_common_CFLAGS} \
     ${fty_common_mlm_CFLAGS} \
@@ -27,7 +27,7 @@ AM_CPPFLAGS = \
     -D__STDC_FORMAT_MACROS \
     -I$(srcdir)/include
 
-project_libs = ${log4cplus_LIBS} ${fty_common_logging_LIBS} ${openssl_LIBS} ${fty_lib_certificate_LIBS} ${libsodium_LIBS} ${libzmq_LIBS} ${czmq_LIBS} ${cxxtools_LIBS} ${malamute_LIBS} ${fty_common_LIBS} ${fty_common_mlm_LIBS} ${fty_security_wallet_LIBS}
+project_libs = ${log4cplus_LIBS} ${fty_common_logging_LIBS} ${cxxtools_LIBS} ${openssl_LIBS} ${fty_lib_certificate_LIBS} ${libsodium_LIBS} ${libzmq_LIBS} ${czmq_LIBS} ${malamute_LIBS} ${fty_common_LIBS} ${fty_common_mlm_LIBS} ${fty_security_wallet_LIBS}
 
 SUBDIRS = doc
 SUBDIRS += include
@@ -50,12 +50,12 @@ if ENABLE_DIST_CMAKEFILES
 EXTRA_DIST += \
     Findlog4cplus.cmake \
     Findfty_common_logging.cmake \
+    Findcxxtools.cmake \
     Findopenssl.cmake \
     Findfty_lib_certificate.cmake \
     Findlibsodium.cmake \
     Findlibzmq.cmake \
     Findczmq.cmake \
-    Findcxxtools.cmake \
     Findmalamute.cmake \
     Findfty_common.cmake \
     Findfty_common_mlm.cmake \
@@ -69,6 +69,9 @@ endif
 EXTRA_DIST += \
     src/certgen_certificate_generator_server.h \
     src/certgen_certificate_generator_config.h \
+    src/certgen_certificate_config.h \
+    src/certgen_key_config.h \
+    src/certgen_storage_config.h \
     README.md \
     src/fty_certificate_generator_classes.h
 

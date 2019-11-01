@@ -1,5 +1,5 @@
 /*  =========================================================================
-    certgen_certificate_generator_config - class description
+    certgen_storage_config - class description
 
     Copyright (C) 2014 - 2019 Eaton
 
@@ -21,7 +21,7 @@
 
 /*
 @header
-    certgen_certificate_generator_config -
+    certgen_storage_config -
 @discuss
 @end
 */
@@ -29,10 +29,38 @@
 #include "fty_certificate_generator_classes.h"
 
 //  Structure of our class
-namespace certgen
-{
 
-} // namescpace certgen
+struct _certgen_storage_config_t {
+    int filler;     //  Declare class properties here
+};
+
+
+//  --------------------------------------------------------------------------
+//  Create a new certgen_storage_config
+
+certgen_storage_config_t *
+certgen_storage_config_new (void)
+{
+    certgen_storage_config_t *self = (certgen_storage_config_t *) zmalloc (sizeof (certgen_storage_config_t));
+    assert (self);
+    //  Initialize class properties here
+    return self;
+}
+
+
+//  --------------------------------------------------------------------------
+//  Destroy the certgen_storage_config
 
 void
-certgen_certificate_generator_config_test (bool verbose);
+certgen_storage_config_destroy (certgen_storage_config_t **self_p)
+{
+    assert (self_p);
+    if (*self_p) {
+        certgen_storage_config_t *self = *self_p;
+        //  Free class properties here
+        //  Free object itself
+        free (self);
+        *self_p = NULL;
+    }
+}
+

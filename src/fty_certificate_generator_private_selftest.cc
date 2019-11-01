@@ -37,6 +37,15 @@
 void
 fty_certificate_generator_private_selftest (bool verbose, const char *subtest)
 {
+// Tests for stable private classes:
+    if (streq (subtest, "$ALL") || streq (subtest, "certgen_certificate_generator_config_test"))
+        certgen_certificate_generator_config_test (verbose);
+    if (streq (subtest, "$ALL") || streq (subtest, "certgen_certificate_config_test"))
+        certgen_certificate_config_test (verbose);
+    if (streq (subtest, "$ALL") || streq (subtest, "certgen_key_config_test"))
+        certgen_key_config_test (verbose);
+    if (streq (subtest, "$ALL") || streq (subtest, "certgen_storage_config_test"))
+        certgen_storage_config_test (verbose);
 }
 /*
 ################################################################################

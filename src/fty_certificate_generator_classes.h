@@ -41,6 +41,18 @@ typedef struct _certgen_certificate_generator_server_t certgen_certificate_gener
 typedef struct _certgen_certificate_generator_config_t certgen_certificate_generator_config_t;
 #define CERTGEN_CERTIFICATE_GENERATOR_CONFIG_T_DEFINED
 #endif
+#ifndef CERTGEN_CERTIFICATE_CONFIG_T_DEFINED
+typedef struct _certgen_certificate_config_t certgen_certificate_config_t;
+#define CERTGEN_CERTIFICATE_CONFIG_T_DEFINED
+#endif
+#ifndef CERTGEN_KEY_CONFIG_T_DEFINED
+typedef struct _certgen_key_config_t certgen_key_config_t;
+#define CERTGEN_KEY_CONFIG_T_DEFINED
+#endif
+#ifndef CERTGEN_STORAGE_CONFIG_T_DEFINED
+typedef struct _certgen_storage_config_t certgen_storage_config_t;
+#define CERTGEN_STORAGE_CONFIG_T_DEFINED
+#endif
 
 //  Extra headers
 
@@ -85,9 +97,32 @@ safe_malloc (size_t size, const char *file, unsigned line)
 
 #include "certgen_certificate_generator_server.h"
 #include "certgen_certificate_generator_config.h"
+#include "certgen_certificate_config.h"
+#include "certgen_key_config.h"
+#include "certgen_storage_config.h"
 
 //  *** To avoid double-definitions, only define if building without draft ***
 #ifndef FTY_CERTIFICATE_GENERATOR_BUILD_DRAFT_API
+
+//  *** Draft method, defined for internal use only ***
+//  Self test of this class.
+FTY_CERTIFICATE_GENERATOR_PRIVATE void
+    certgen_certificate_generator_config_test (bool verbose);
+
+//  *** Draft method, defined for internal use only ***
+//  Self test of this class.
+FTY_CERTIFICATE_GENERATOR_PRIVATE void
+    certgen_certificate_config_test (bool verbose);
+
+//  *** Draft method, defined for internal use only ***
+//  Self test of this class.
+FTY_CERTIFICATE_GENERATOR_PRIVATE void
+    certgen_key_config_test (bool verbose);
+
+//  *** Draft method, defined for internal use only ***
+//  Self test of this class.
+FTY_CERTIFICATE_GENERATOR_PRIVATE void
+    certgen_storage_config_test (bool verbose);
 
 //  Self test for private classes
 FTY_CERTIFICATE_GENERATOR_PRIVATE void
