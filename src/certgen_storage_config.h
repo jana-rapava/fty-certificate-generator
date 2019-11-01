@@ -22,27 +22,62 @@
 #ifndef CERTGEN_STORAGE_CONFIG_H_INCLUDED
 #define CERTGEN_STORAGE_CONFIG_H_INCLUDED
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <string>
+#include <vector>
+#include <memory>
 
-//  @interface
-//  Create a new certgen_storage_config
- certgen_storage_config_t *
-    certgen_storage_config_new (void);
+#include "cxxtools/serializationinfo.h"
 
-//  Destroy the certgen_storage_config
- void
-    certgen_storage_config_destroy (certgen_storage_config_t **self_p);
+namespace certgen
+{
+    class StorageConfigParams;
+    using StorageConfigParamsPtr = std::unique_ptr<StorageConfigParams>;
 
-//  Self test of this class
- void
-    certgen_storage_config_test (bool verbose);
+    class StorageConfigParams
+    {
+    public:
+        virtual ~StorageConfigParams() = default;
+        virtual void load(const cxxtools::SerializationInfo& si) = 0;
 
-//  @end
+        static StorageConfigParamsPtr create(const std::string & storageType);
+    };
+    void operator>>= (const cxxtools::SerializationInfo& si, StorageConfigParams & config);
 
-#ifdef __cplusplus
-}
-#endif
+    class StorageConfig
+    {
+    private:
+        std::string m_storageType;
+        bool m_permanent;
+        StorageConfigParamsPtr m_params;
+
+    public:
+        StorageConfig() = default;
+
+        void load(const cxxtools::SerializationInfo& si);
+
+        const std::string & storageType() const { return m_storageType; }
+        bool isPermanent() const { return m_permanent; }
+        const StorageConfigParamsPtr & params() const { return m_params; } 
+    };
+    void operator>>= (const cxxtools::SerializationInfo& si, StorageConfig & config);
+
+    class StorageConfigSecwParams : public StorageConfigParams
+    {
+    private:
+        std::string m_portfolio;
+        std::string m_documentName;
+        std::vector<std::string> m_documentUsages;
+    public:
+
+        void load(const cxxtools::SerializationInfo& si) override;
+
+        const std::string & portfolio() const { return m_portfolio; }
+        const std::string & documentName() const { return m_documentName; }
+        const std::vector<std::string> & documentUsages() const { return m_documentUsages; }
+    };
+
+} //namespace certgen
+
+void certgen_storage_config_test (bool verbose);
 
 #endif

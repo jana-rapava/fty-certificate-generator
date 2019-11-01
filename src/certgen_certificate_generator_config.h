@@ -22,28 +22,14 @@
 #ifndef CERTGEN_CERTIFICATE_GENERATOR_CONFIG_H_INCLUDED
 #define CERTGEN_CERTIFICATE_GENERATOR_CONFIG_H_INCLUDED
 
-#include <cxxtools/jsonserializer.h>
-#include <cxxtools/jsondeserializer.h>
-
 namespace certgen
 {
-    class KeyConfig
-    {
-
-    };
-
-    class StorageConfig
-    {
-
-    };
-
     class CertificateGeneratorConfig
     {
 
     };
 } // namescpace certgen
 
-void
-certgen_certificate_generator_config_test (bool verbose);
+void certgen_certificate_generator_config_test (bool verbose);
 
 #endif

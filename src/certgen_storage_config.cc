@@ -26,64 +26,63 @@
 @end
 */
 
-#include "fty_certificate_generator_classes.h"
+#include "certgen_storage_config.h"
 
 //  Structure of our class
-
-struct _certgen_storage_config_t {
-    int filler;     //  Declare class properties here
-};
-
-
-//  --------------------------------------------------------------------------
-//  Create a new certgen_storage_config
-
-certgen_storage_config_t *
-certgen_storage_config_new (void)
+namespace certgen
 {
-    certgen_storage_config_t *self = (certgen_storage_config_t *) zmalloc (sizeof (certgen_storage_config_t));
-    assert (self);
-    //  Initialize class properties here
-    return self;
-}
+// StorageConfig
+    void StorageConfig::load(const cxxtools::SerializationInfo& si)
+    {
+        si.getMember("storage_type") >>= m_storageType;
+        si.getMember("permanent") >>= m_permanent;
 
-
-//  --------------------------------------------------------------------------
-//  Destroy the certgen_storage_config
-
-void
-certgen_storage_config_destroy (certgen_storage_config_t **self_p)
-{
-    assert (self_p);
-    if (*self_p) {
-        certgen_storage_config_t *self = *self_p;
-        //  Free class properties here
-        //  Free object itself
-        free (self);
-        *self_p = NULL;
+        m_params = StorageConfigParams::create(m_storageType);
+        
+        si.getMember("storage_params") >>= *(m_params);
     }
-}
+
+    void operator>>= (const cxxtools::SerializationInfo& si, StorageConfig & config)
+    {
+        config.load(si);
+    }
+
+// StorageConfigParams
+    StorageConfigParamsPtr StorageConfigParams::create(const std::string & storageType)
+    {
+        if(storageType == "secw")
+        {
+            return StorageConfigParamsPtr(new StorageConfigSecwParams());
+        }
+        else
+        {
+            throw std::runtime_error( "Storage type <"+storageType+"> is not supported");
+        }
+    }
+
+    void operator>>= (const cxxtools::SerializationInfo& si, StorageConfigParams & configParams)
+    {
+        configParams.load(si);
+    }
+
+    void StorageConfigSecwParams::load(const cxxtools::SerializationInfo& si)
+    {
+        si.getMember("secw_portfolio") >>= m_portfolio;
+        si.getMember("secw_document_name") >>= m_documentName;
+        si.getMember("secw_document_usages") >>= m_documentUsages;
+    }
+
+} // namescpace certgen
 
 //  --------------------------------------------------------------------------
 //  Self test of this class
-
-// If your selftest reads SCMed fixture data, please keep it in
-// src/selftest-ro; if your test creates filesystem objects, please
-// do so under src/selftest-rw.
-// The following pattern is suggested for C selftest code:
-//    char *filename = NULL;
-//    filename = zsys_sprintf ("%s/%s", SELFTEST_DIR_RO, "mytemplate.file");
-//    assert (filename);
-//    ... use the "filename" for I/O ...
-//    zstr_free (&filename);
-// This way the same "filename" variable can be reused for many subtests.
 #define SELFTEST_DIR_RO "src/selftest-ro"
 #define SELFTEST_DIR_RW "src/selftest-rw"
 
 void
 certgen_storage_config_test (bool verbose)
 {
-    printf (" * certgen_certificate_config: ");
+    printf (" * certgen_storage_config: ");
 
     //  @selftest
     //  Simple create/destroy test

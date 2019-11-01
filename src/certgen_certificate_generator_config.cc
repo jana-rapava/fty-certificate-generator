@@ -28,6 +28,7 @@
 
 #include "fty_certificate_generator_classes.h"
 
+#include "certgen_certificate_generator_config.h"
 //  Structure of our class
 namespace certgen
 {
