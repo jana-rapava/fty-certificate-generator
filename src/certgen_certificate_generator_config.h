@@ -34,9 +34,7 @@ namespace certgen
     class CertificateConfig
     {
         public:
-            explicit CertificateConfig (const cxxtools::SerializationInfo & si);
             void deserialize (const cxxtools::SerializationInfo & si);
-            void serialize (cxxtools::SerializationInfo & si) const;
         private:
             std::string m_signatureType;
             uint32_t m_validity;
@@ -51,7 +49,7 @@ namespace certgen
 
     class CertificateGeneratorConfig
     {
-        
+
     };
 } // namescpace certgen
 
