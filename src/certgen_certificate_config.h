@@ -22,27 +22,26 @@
 #ifndef CERTGEN_CERTIFICATE_CONFIG_H_INCLUDED
 #define CERTGEN_CERTIFICATE_CONFIG_H_INCLUDED
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+namespace certgen
+{
 
-//  @interface
-//  Create a new certgen_certificate_config
- certgen_certificate_config_t *
-    certgen_certificate_config_new (void);
+    class CertificateConfig
+    {
+        public:
+            void deserialize (const cxxtools::SerializationInfo & si);
+        private:
+            std::string m_signatureType;
+            uint32_t m_validity;
+            int m_validityOffset;
+            uint8_t m_certificateLevel;
+    };
 
-//  Destroy the certgen_certificate_config
- void
-    certgen_certificate_config_destroy (certgen_certificate_config_t **self_p);
+} // namescpace certgen
 
 //  Self test of this class
  void
     certgen_certificate_config_test (bool verbose);
 
 //  @end
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif

@@ -31,16 +31,6 @@ namespace certgen
     {
 
     };
-    class CertificateConfig
-    {
-        public:
-            void deserialize (const cxxtools::SerializationInfo & si);
-        private:
-            std::string m_signatureType;
-            uint32_t m_validity;
-            int m_validityOffset;
-            uint8_t m_certificateLevel;
-    };
 
     class StorageConfig
     {
@@ -53,23 +43,7 @@ namespace certgen
     };
 } // namescpace certgen
 
-//  --------------------------------------------------------------------------
-//  Self test of this class
-
-#define SELFTEST_DIR_RO "src/selftest-ro"
-#define SELFTEST_DIR_RW "src/selftest-rw"
-
 void
-certgen_certificate_generator_config_test (bool verbose)
-{
-    printf (" * certgen_certificate_generator_config: ");
-
-    //  @selftest
-    //  Simple create/destroy test
-
-    //  @end
-    printf ("OK\n");
-}
-
+certgen_certificate_generator_config_test (bool verbose);
 
 #endif

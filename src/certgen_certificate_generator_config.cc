@@ -32,15 +32,23 @@
 namespace certgen
 {
 
-    void CertificateConfig::deserialize (const cxxtools::SerializationInfo & si)
-    {
-        si.getMember("signature_type") >>= m_signatureType;
-
-        si.getMember("validity") >>= m_validity;
-
-        si.getMember("validity_offset") >>= m_validityOffset;
-
-        si.getMember("certificate_level") >>= m_certificateLevel;
-    }
-
 } // namescpace certgen
+
+//  --------------------------------------------------------------------------
+//  Self test of this class
+
+#define SELFTEST_DIR_RO "src/selftest-ro"
+#define SELFTEST_DIR_RW "src/selftest-rw"
+
+void
+certgen_certificate_generator_config_test (bool verbose)
+{
+    printf (" * certgen_certificate_generator_config: ");
+
+    //  @selftest
+    //  Simple create/destroy test
+
+    //  @end
+    printf ("OK\n");
+}
+
