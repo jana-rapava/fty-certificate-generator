@@ -13,10 +13,13 @@ lib_LTLIBRARIES += src/libfty_certificate_generator.la
 pkgconfig_DATA = src/libfty_certificate_generator.pc
 
 src_libfty_certificate_generator_la_SOURCES = \
+    src/certgen_certificate_generator_server.cc \
+    src/certgen_certificate_generator_config.cc \
     src/platform.h
 
 if ENABLE_DRAFTS
 src_libfty_certificate_generator_la_SOURCES += \
+    src/certgen_accessor.cc \
     src/fty-certificate-generator-agent.cc
 
 endif

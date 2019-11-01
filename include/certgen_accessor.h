@@ -1,5 +1,5 @@
 /*  =========================================================================
-    fty_certificate_generator_agent - class description
+    certgen_accessor - class description
 
     Copyright (C) 2014 - 2019 Eaton
 
@@ -19,17 +19,12 @@
     =========================================================================
 */
 
-#ifndef FTY_CERTIFICATE_GENERATOR_AGENT_H_INCLUDED
-#define FTY_CERTIFICATE_GENERATOR_AGENT_H_INCLUDED
+#ifndef CERTGEN_ACCESSOR_H_INCLUDED
+#define CERTGEN_ACCESSOR_H_INCLUDED
 
 namespace certgen
 {
 
 } // namescpace certgen
-
-
-//  Self test of this class
-void fty_certificate_generator_agent_test (bool verbose);
-
 
 #endif

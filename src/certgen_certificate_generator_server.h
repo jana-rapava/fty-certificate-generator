@@ -1,5 +1,5 @@
 /*  =========================================================================
-    fty_certificate_generator_agent - class description
+    certgen_certificate_generator_server - class description
 
     Copyright (C) 2014 - 2019 Eaton
 
@@ -19,17 +19,27 @@
     =========================================================================
 */
 
-#ifndef FTY_CERTIFICATE_GENERATOR_AGENT_H_INCLUDED
-#define FTY_CERTIFICATE_GENERATOR_AGENT_H_INCLUDED
+#ifndef CERTGEN_CERTIFICATE_GENERATOR_SERVER_H_INCLUDED
+#define CERTGEN_CERTIFICATE_GENERATOR_SERVER_H_INCLUDED
 
-namespace certgen
-{
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-} // namescpace certgen
+//  @interface
+//  Create a new certgen_certificate_generator_server
+FTY_CERTIFICATE_GENERATOR_PRIVATE certgen_certificate_generator_server_t *
+    certgen_certificate_generator_server_new (void);
+
+//  Destroy the certgen_certificate_generator_server
+FTY_CERTIFICATE_GENERATOR_PRIVATE void
+    certgen_certificate_generator_server_destroy (certgen_certificate_generator_server_t **self_p);
 
 
-//  Self test of this class
-void fty_certificate_generator_agent_test (bool verbose);
+//  @end
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif

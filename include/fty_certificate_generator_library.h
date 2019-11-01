@@ -32,6 +32,8 @@
 //  External dependencies
 #include <fty_log.h>
 #include <fty-lib-certificate.h>
+#include <fty_common_mlm.h>
+#include <fty_security_wallet.h>
 
 //  FTY_CERTIFICATE_GENERATOR version macros for compile-time API detection
 #define FTY_CERTIFICATE_GENERATOR_VERSION_MAJOR 1
@@ -99,6 +101,8 @@
 //  These classes are stable or legacy and built in all releases
 //  Draft classes are by default not built in stable releases
 #ifdef FTY_CERTIFICATE_GENERATOR_BUILD_DRAFT_API
+typedef struct _certgen_accessor_t certgen_accessor_t;
+#define CERTGEN_ACCESSOR_T_DEFINED
 typedef struct _fty_certificate_generator_agent_t fty_certificate_generator_agent_t;
 #define FTY_CERTIFICATE_GENERATOR_AGENT_T_DEFINED
 #endif // FTY_CERTIFICATE_GENERATOR_BUILD_DRAFT_API
@@ -106,6 +110,7 @@ typedef struct _fty_certificate_generator_agent_t fty_certificate_generator_agen
 
 //  Public classes, each with its own header file
 #ifdef FTY_CERTIFICATE_GENERATOR_BUILD_DRAFT_API
+#include "certgen_accessor.h"
 #include "fty-certificate-generator-agent.h"
 #endif // FTY_CERTIFICATE_GENERATOR_BUILD_DRAFT_API
 

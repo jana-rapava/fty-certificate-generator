@@ -33,6 +33,14 @@
 #include "../include/fty-certificate-generator.h"
 
 //  Opaque class structures to allow forward references
+#ifndef CERTGEN_CERTIFICATE_GENERATOR_SERVER_T_DEFINED
+typedef struct _certgen_certificate_generator_server_t certgen_certificate_generator_server_t;
+#define CERTGEN_CERTIFICATE_GENERATOR_SERVER_T_DEFINED
+#endif
+#ifndef CERTGEN_CERTIFICATE_GENERATOR_CONFIG_T_DEFINED
+typedef struct _certgen_certificate_generator_config_t certgen_certificate_generator_config_t;
+#define CERTGEN_CERTIFICATE_GENERATOR_CONFIG_T_DEFINED
+#endif
 
 //  Extra headers
 
@@ -75,6 +83,8 @@ safe_malloc (size_t size, const char *file, unsigned line)
 #endif // __CZMQ_PRELUDE_H_INCLUDED__
 
 
+#include "certgen_certificate_generator_server.h"
+#include "certgen_certificate_generator_config.h"
 
 //  *** To avoid double-definitions, only define if building without draft ***
 #ifndef FTY_CERTIFICATE_GENERATOR_BUILD_DRAFT_API

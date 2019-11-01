@@ -8,6 +8,7 @@ nobase_include_HEADERS = \
 
 if ENABLE_DRAFTS
 nobase_include_HEADERS += \
+    certgen_accessor.h \
     fty-certificate-generator-agent.h
 
 endif

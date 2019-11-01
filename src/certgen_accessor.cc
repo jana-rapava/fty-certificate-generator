@@ -1,5 +1,5 @@
 /*  =========================================================================
-    fty-certificate-generator - description
+    certgen_accessor - class description
 
     Copyright (C) 2014 - 2019 Eaton
 
@@ -21,41 +21,14 @@
 
 /*
 @header
-    fty-certificate-generator -
+    certgen_accessor -
 @discuss
 @end
 */
 
-#include "fty_certificate_generator_classes.h"
-
-int main (int argc, char *argv [])
+//  Structure of our class
+namespace certgen
 {
-    bool verbose = false;
-    int argn;
-    for (argn = 1; argn < argc; argn++) {
-        if (streq (argv [argn], "--help")
-        ||  streq (argv [argn], "-h")) {
-            puts ("fty-certificate-generator [options] ...");
-            puts ("  --verbose / -v         verbose test output");
-            puts ("  --help / -h            this information");
-            return 0;
-        }
-        else
-        if (streq (argv [argn], "--verbose")
-        ||  streq (argv [argn], "-v"))
-            verbose = true;
-        else {
-            printf ("Unknown option: %s\n", argv [argn]);
-            return 1;
-        }
-    }
-    
-    if (verbose)
-        //zsys_info ("fty-certificate-generator - ");
 
-//  Insert main code here
+} // namescpace certgen
 
-
-
-    return 0;
-}

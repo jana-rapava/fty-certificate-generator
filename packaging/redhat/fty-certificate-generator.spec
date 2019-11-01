@@ -55,6 +55,14 @@ BuildRequires:  log4cplus-devel
 BuildRequires:  fty-common-logging-devel
 BuildRequires:  openssl-devel
 BuildRequires:  fty-lib-certificate-devel
+BuildRequires:  libsodium-devel
+BuildRequires:  zeromq-devel
+BuildRequires:  czmq-devel >= 3.0.2
+BuildRequires:  cxxtools-devel
+BuildRequires:  malamute-devel >= 1.0.0
+BuildRequires:  fty-common-devel
+BuildRequires:  fty-common-mlm-devel
+BuildRequires:  fty-security-wallet-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -82,6 +90,14 @@ Requires:       log4cplus-devel
 Requires:       fty-common-logging-devel
 Requires:       openssl-devel
 Requires:       fty-lib-certificate-devel
+Requires:       libsodium-devel
+Requires:       zeromq-devel
+Requires:       czmq-devel >= 3.0.2
+Requires:       cxxtools-devel
+Requires:       malamute-devel >= 1.0.0
+Requires:       fty-common-devel
+Requires:       fty-common-mlm-devel
+Requires:       fty-security-wallet-devel
 
 %description devel
 generation internal certificates agent development tools
