@@ -22,13 +22,12 @@
 #ifndef CERTGEN_CERTIFICATE_GENERATOR_CONFIG_H_INCLUDED
 #define CERTGEN_CERTIFICATE_GENERATOR_CONFIG_H_INCLUDED
 
+#include <cxxtools/jsonserializer.h>
+#include <cxxtools/jsondeserializer.h>
+
 namespace certgen
 {
     class KeyConfig
-    {
-
-    };
-    class CertificateConfig
     {
 
     };
@@ -44,23 +43,7 @@ namespace certgen
     };
 } // namescpace certgen
 
-//  --------------------------------------------------------------------------
-//  Self test of this class
-
-#define SELFTEST_DIR_RO "src/selftest-ro"
-#define SELFTEST_DIR_RW "src/selftest-rw"
-
 void
-certgen_certificate_generator_config_test (bool verbose)
-{
-    printf (" * certgen_certificate_generator_config: ");
-
-    //  @selftest
-    //  Simple create/destroy test
-
-    //  @end
-    printf ("OK\n");
-}
-
+certgen_certificate_generator_config_test (bool verbose);
 
 #endif

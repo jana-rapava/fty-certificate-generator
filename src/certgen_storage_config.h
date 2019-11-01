@@ -35,6 +35,9 @@ extern "C" {
  void
     certgen_storage_config_destroy (certgen_storage_config_t **self_p);
 
+//  Self test of this class
+ void
+    certgen_storage_config_test (bool verbose);
 
 //  @end
 
