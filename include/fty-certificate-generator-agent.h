@@ -22,14 +22,13 @@
 #ifndef FTY_CERTIFICATE_GENERATOR_AGENT_H_INCLUDED
 #define FTY_CERTIFICATE_GENERATOR_AGENT_H_INCLUDED
 
-namespace certgen
-{
-
-} // namescpace certgen
-
+//  @interface
+//  zactor function
+void
+    fty_certificate_generator_agent(zsock_t *pipe, void *args);
 
 //  Self test of this class
-void fty_certificate_generator_agent_test (bool verbose);
-
+void
+    fty_certificate_generator_agent_test (bool verbose);
 
 #endif
