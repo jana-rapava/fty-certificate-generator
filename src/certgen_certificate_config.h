@@ -29,6 +29,8 @@ namespace certgen
     {
         public:
             void deserialize (const cxxtools::SerializationInfo & si);
+            std::string getSignatureType() { return m_signatureType; }
+            uint32_t getValidity() { return m_validity; }
         private:
             std::string m_signatureType;
             uint32_t m_validity;

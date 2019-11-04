@@ -49,6 +49,12 @@ namespace certgen
 
 } // namescpace certgen
 
+void operator>>= (const cxxtools::SerializationInfo &si, certgen::CertificateConfig & config)
+{
+    config.deserialize (si);
+}
+
+
 //  --------------------------------------------------------------------------
 //  Self test of this class
 #define SELFTEST_DIR_RO "src/selftest-ro"
@@ -61,7 +67,8 @@ certgen_certificate_config_test (bool verbose)
 
     //  @selftest
     //  Simple deserialize test
-    std::string configFilePath (SELFTEST_DIR_RO + std::string ("certificate.config"));
+    {
+    std::string configFilePath (SELFTEST_DIR_RO + std::string ("/certificate.config"));
     std::ifstream configFile (configFilePath);
 
     if (configFile)
@@ -73,6 +80,41 @@ certgen_certificate_config_test (bool verbose)
         cxxtools::SerializationInfo configSi;
         cxxtools::JsonDeserializer deserializer (configJson);
         deserializer.deserialize (configSi);
+
+        certgen::CertificateConfig config;
+        configSi >>= config;
+
+        assert (config.getSignatureType() == "SHA256");
+        assert (config.getValidity() == 730);
+    }
+    }
+
+    {
+    std::string configFilePath (SELFTEST_DIR_RO + std::string ("/certificate.config.bad"));
+    std::ifstream configFile (configFilePath);
+
+    if (configFile)
+    {
+        std::stringstream configJson;
+        configJson << configFile.rdbuf();
+        configFile.close ();
+
+        try {
+            cxxtools::SerializationInfo configSi;
+            cxxtools::JsonDeserializer deserializer (configJson);
+            deserializer.deserialize (configSi);
+
+            certgen::CertificateConfig config;
+            configSi >>= config;
+
+            assert (config.getSignatureType() == "SHA256");
+            assert (config.getValidity() == 730);
+        }
+        catch (cxxtools::SerializationMemberNotFound &e)
+        {
+            assert (streq (e.what(), "Missing info for 'validity'"));
+        }
+    }
     }
     //  @end
     printf ("OK\n");
