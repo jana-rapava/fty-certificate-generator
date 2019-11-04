@@ -38,12 +38,12 @@ namespace certgen
     CertificateGeneratorServer::CertificateGeneratorServer()
     {
         //initiate the commands handlers
-        m_supportedCommands[GENERATE_SELFSIGNED_CERTIFICATE] = std::bind(&CertificateGeneratorServer::handleGenerateSelfsignedCertificate, this, _1, _2);
-        m_supportedCommands[GENERATE_CSR] = std::bind(&CertificateGeneratorServer::handleGenerateCSR, this, _1, _2);
-        m_supportedCommands[IMPORT_CERTIFICATE] = std::bind(&CertificateGeneratorServer::handleImportCertificate, this, _1, _2);
+        m_supportedCommands[GENERATE_SELFSIGNED_CERTIFICATE] = std::bind(&CertificateGeneratorServer::handleGenerateSelfsignedCertificate, this, _1);
+        m_supportedCommands[GENERATE_CSR] = std::bind(&CertificateGeneratorServer::handleGenerateCSR, this, _1);
+        m_supportedCommands[IMPORT_CERTIFICATE] = std::bind(&CertificateGeneratorServer::handleImportCertificate, this, _1);
     }
 
-    Payload CertificateGeneratorServer::handleRequest(const Sender & sender, const Payload & payload)
+    Payload CertificateGeneratorServer::handleRequest(const Sender & /*sender*/, const Payload & payload)
     {
         try
         {
@@ -69,7 +69,7 @@ namespace certgen
             //create copy of the payload
             std::vector<std::string> params(payload.begin() + 1, payload.end());
 
-            std::string result = cmdHandler(sender, params);
+            std::string result = cmdHandler(params);
             return {result};
         }
         catch (std::exception &e)
@@ -84,19 +84,19 @@ namespace certgen
         }
     }
 
-    std::string CertificateGeneratorServer::handleGenerateSelfsignedCertificate(const fty::Sender & /*sender*/, const fty::Payload & /*params*/)
+    std::string CertificateGeneratorServer::handleGenerateSelfsignedCertificate(const fty::Payload & /*params*/)
     {
         std::string empty;
         return empty;
     }
 
-    std::string CertificateGeneratorServer::handleGenerateCSR(const fty::Sender & /*sender*/, const fty::Payload & /*params*/)
+    std::string CertificateGeneratorServer::handleGenerateCSR(const fty::Payload & /*params*/)
     {
         std::string empty;
         return empty;
     }
 
-    std::string CertificateGeneratorServer::handleImportCertificate(const fty::Sender & /*sender*/, const fty::Payload & /*params*/)
+    std::string CertificateGeneratorServer::handleImportCertificate(const fty::Payload & /*params*/)
     {
         std::string empty;
         return empty;

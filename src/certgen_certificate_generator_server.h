@@ -29,7 +29,7 @@ namespace certgen
 {
     using Command   = std::string;
 
-    using FctCommandHandler = std::function<std::string (const fty::Sender &, const std::vector<std::string> &)>;
+    using FctCommandHandler = std::function<std::string (const std::vector<std::string> &)>;
 
     class CertificateGeneratorServer final : public fty::SyncServer
     {
@@ -42,9 +42,9 @@ namespace certgen
             std::map<Command, FctCommandHandler> m_supportedCommands;
 
             // Handlers for all supported commands
-            std::string handleGenerateSelfsignedCertificate(const fty::Sender & sender, const fty::Payload & params);
-            std::string handleGenerateCSR(const fty::Sender & sender, const fty::Payload & params);
-            std::string handleImportCertificate(const fty::Sender & sender, const fty::Payload & params);
+            std::string handleGenerateSelfsignedCertificate(const fty::Payload & params);
+            std::string handleGenerateCSR(const fty::Payload & params);
+            std::string handleImportCertificate(const fty::Payload & params);
 
         public:
             //Command list
