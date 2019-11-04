@@ -22,12 +22,48 @@
 #ifndef CERTGEN_CERTIFICATE_GENERATOR_CONFIG_H_INCLUDED
 #define CERTGEN_CERTIFICATE_GENERATOR_CONFIG_H_INCLUDED
 
+#include <string>
+#include <vector>
+#include <memory>
+#include <ostream>
+
+// #include "certgen_certificate_config.h"
+#include "certgen_key_config.h"
+#include "certgen_storage_config.h"
+#include "certgen_certificate_generator_config.h"
+
+#include "cxxtools/serializationinfo.h"
+#include "cxxtools/jsondeserializer.h"
+
 namespace certgen
 {
+    using KeyConfigPtr = std::unique_ptr<KeyConfig>;
+    // using CertificateConfigPtr = std::unique_ptr<CertificateConfig>;
+    using StorageConfigPtr = std::unique_ptr<StorageConfig>;
+
     class CertificateGeneratorConfig
     {
+    public:
+        CertificateGeneratorConfig() = default;
 
+        const std::string           & version() const { return m_version; };
+        const KeyConfig             & keyConf() const { return m_keyConf; };
+        // const CertificateConfigPtr  & certConf() const { return certConf; };
+        // const StorageConfigPtr      & storageConf() const { return storageConf; };
+
+        void load(const cxxtools::SerializationInfo& si);
+
+    private:
+        std::string            m_version;
+        KeyConfig              m_keyConf;
+        // CertificateConfigPtr   m_certConf;
+        // StorageConfigPtr       m_storageConf;
+        
     };
+
+    void operator>>= (const cxxtools::SerializationInfo& si, CertificateGeneratorConfig & config);
+    std::ostream& operator<<(std::ostream& os, const CertificateGeneratorConfig & c);
+
 } // namescpace certgen
 
 void certgen_certificate_generator_config_test (bool verbose);
