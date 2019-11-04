@@ -46,7 +46,7 @@ namespace certgen
 
     std::ostream& operator<<(std::ostream& os, const CertificateGeneratorConfig & c)
     {
-        std::cout << c.version() << std::endl;
+        std::cout << "Version: " << c.version() << std::endl;
         std::cout << c.keyConf() << std::endl;
     }
 } // namescpace certgen

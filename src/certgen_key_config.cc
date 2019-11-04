@@ -55,7 +55,8 @@ namespace certgen
 
     std::ostream& operator<<(std::ostream& os, const KeyConfig & k)
     {
-        os << "Key type: " << std::endl << k.m_keyType << std::endl;
+        os << "Key type: " << k.m_keyType << std::endl;
+        os << "Key params: " << std::endl << k.m_params->toString() << std::endl;
 
         return os;
     }
@@ -77,9 +78,9 @@ namespace certgen
     }
 
     std::string KeyConfigRsaParams::toString() const
-    {
+    {   // TODO find a better implementation
         std::string outString("\tRSA length: ");
-        outString += (m_rsaLength);
+        outString += std::to_string(m_rsaLength);
         outString += "\n";
 
         return outString;
