@@ -22,28 +22,64 @@
 #ifndef CERTGEN_KEY_CONFIG_H_INCLUDED
 #define CERTGEN_KEY_CONFIG_H_INCLUDED
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <string>
+#include <vector>
+#include <memory>
 
-//  @interface
-//  Create a new certgen_key_config
- certgen_key_config_t *
-    certgen_key_config_new (void);
+#include "cxxtools/serializationinfo.h"
 
-//  Destroy the certgen_key_config
- void
-    certgen_key_config_destroy (certgen_key_config_t **self_p);
+namespace certgen
+{
+    class KeyConfigParams;
+    using KeyConfigParamsPtr = std::unique_ptr<KeyConfigParams>;
 
-//  Self test of this class
- void
-    certgen_key_config_test (bool verbose);
+    class KeyConfigParams
+    {
+    public:
+        virtual ~KeyConfigParams() = default;
+        virtual void load(const cxxtools::SerializationInfo& si) = 0;
 
-//  @end
+        static KeyConfigParamsPtr create(const std::string & storageType);
+    };
+    void operator>>= (const cxxtools::SerializationInfo& si, KeyConfigParams & config);
 
-#ifdef __cplusplus
-}
-#endif
+    class KeyConfig
+    {
+    private:
+        std::string m_keyType;
+        KeyConfigParamsPtr m_params;
+
+    public:
+        KeyConfig() = default;
+
+        void load(const cxxtools::SerializationInfo& si);
+
+        const std::string & storageType() const { return m_keyType; }
+        const KeyConfigParamsPtr & params() const { return m_params; } 
+    };
+    void operator>>= (const cxxtools::SerializationInfo& si, KeyConfig & config);
+
+    class KeyConfigRsaParams : public KeyConfigParams
+    {
+    private:
+        int m_rsaLength;
+
+    public:
+        void load(const cxxtools::SerializationInfo& si) override;
+        int rsaLength() { return m_rsaLength; }
+    };
+
+    class KeyConfigECParams : public KeyConfigParams
+    {
+    private:
+        std::string m_ecCurveType;
+
+    public:
+        void load(const cxxtools::SerializationInfo& si) override;
+        const std::string & ecCurveType() const { return m_ecCurveType; }
+    };
+
+} //namespace certgen
 
 void certgen_key_config_test (bool verbose);
 
