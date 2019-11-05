@@ -42,6 +42,7 @@ namespace certgen
 
 } // namescpace certgen
 
+
 //  Self test of this class
  void
     certgen_certificate_config_test (bool verbose);

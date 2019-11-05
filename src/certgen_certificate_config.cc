@@ -42,17 +42,12 @@ namespace certgen
         si.getMember("certificate_level") >>= m_certificateLevel;
     }
 
-    void operator>>= (const cxxtools::SerializationInfo& si, CertificateConfig & config)
+    void operator>>= (const cxxtools::SerializationInfo &si, CertificateConfig & config)
     {
-        config.deserialize(si);
+        config.deserialize (si);
     }
-
 } // namescpace certgen
 
-void operator>>= (const cxxtools::SerializationInfo &si, certgen::CertificateConfig & config)
-{
-    config.deserialize (si);
-}
 
 
 //  --------------------------------------------------------------------------
