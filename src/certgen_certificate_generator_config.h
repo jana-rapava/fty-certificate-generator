@@ -37,27 +37,23 @@
 
 namespace certgen
 {
-    using KeyConfigPtr = std::unique_ptr<KeyConfig>;
-    // using CertificateConfigPtr = std::unique_ptr<CertificateConfig>;
-    using StorageConfigPtr = std::unique_ptr<StorageConfig>;
-
     class CertificateGeneratorConfig
     {
     public:
         CertificateGeneratorConfig() = default;
 
-        const std::string           & version() const { return m_version; };
-        const KeyConfig             & keyConf() const { return m_keyConf; };
-        // const CertificateConfigPtr  & certConf() const { return certConf; };
-        // const StorageConfigPtr      & storageConf() const { return storageConf; };
+        const std::string       & version() const { return m_version; };
+        const KeyConfig         & keyConf() const { return m_keyConf; };
+        // const CertificateConfig & certConf() const { return certConf; };
+        const StorageConfig     & storageConf() const { return m_storageConf; };
 
         void load(const cxxtools::SerializationInfo& si);
 
     private:
-        std::string            m_version;
-        KeyConfig              m_keyConf;
-        // CertificateConfigPtr   m_certConf;
-        // StorageConfigPtr       m_storageConf;
+        std::string         m_version;
+        KeyConfig           m_keyConf;
+        // CertificateConfig   m_certConf;
+        StorageConfig       m_storageConf;
         
     };
 

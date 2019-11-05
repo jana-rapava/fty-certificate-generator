@@ -36,7 +36,7 @@ namespace certgen
         si.getMember("version")     >>= m_version;
         si.getMember("key")         >>= m_keyConf;
         // si.getMember("certificate") >>= *(m_certConf)
-        // si.getMember("storage")     >>= *(m_storageConf);
+        si.getMember("storage")     >>= m_storageConf;
     }
 
     void operator>>= (const cxxtools::SerializationInfo& si, CertificateGeneratorConfig & config)
@@ -48,6 +48,8 @@ namespace certgen
     {
         std::cout << "Version: " << c.version() << std::endl;
         std::cout << c.keyConf() << std::endl;
+        // std::cout << c.certConf() << std::endl;
+        std::cout << c.storageConf() << std::endl;
     }
 } // namescpace certgen
 
@@ -107,8 +109,6 @@ certgen_certificate_generator_config_test (bool verbose)
 
             configSi >>= conf;
 
-            std::cout << conf;
-
             printf (" *<=  Test #%s > OK\n", testNumber.c_str ());
             testsResults.emplace_back (" Test #" + testNumber + " " + testName, true);
         }
@@ -148,8 +148,6 @@ certgen_certificate_generator_config_test (bool verbose)
             CertificateGeneratorConfig conf;
 
             configSi >>= conf;
-
-            std::cout << conf;
 
             printf (" *<=  Test #%s > OK\n", testNumber.c_str ());
             testsResults.emplace_back (" Test #" + testNumber + " " + testName, true);
@@ -198,8 +196,6 @@ certgen_certificate_generator_config_test (bool verbose)
 
             configSi >>= conf;
 
-            std::cout << conf;
-
             printf (" *<=  Test #%s > OK\n", testNumber.c_str ());
             testsResults.emplace_back (" Test #" + testNumber + " " + testName, true);
         }
@@ -239,8 +235,6 @@ certgen_certificate_generator_config_test (bool verbose)
             CertificateGeneratorConfig conf;
 
             configSi >>= conf;
-
-            std::cout << conf;
 
             printf (" *<=  Test #%s > OK\n", testNumber.c_str ());
             testsResults.emplace_back (" Test #" + testNumber + " " + testName, true);
