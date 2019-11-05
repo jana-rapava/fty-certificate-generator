@@ -78,7 +78,7 @@ namespace certgen
     }
 
     std::string KeyConfigRsaParams::toString() const
-    {   // TODO find a better implementation
+    {
         std::string outString("\tRSA length: ");
         outString += std::to_string(m_rsaLength);
         outString += "\n";
