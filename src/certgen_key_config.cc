@@ -161,8 +161,6 @@ void certgen_key_config_test (bool verbose)
 
             configSi >>= keyConf;
 
-            std::cout << keyConf;
-
             printf (" *<=  Test #%s > OK\n", testNumber.c_str ());
             testsResults.emplace_back (" Test #" + testNumber + " " + testName, true);
         }
@@ -202,8 +200,6 @@ void certgen_key_config_test (bool verbose)
             KeyConfig keyConf;
 
             configSi >>= keyConf;
-
-            std::cout << keyConf;
 
             printf (" *<=  Test #%s > OK\n", testNumber.c_str ());
             testsResults.emplace_back (" Test #" + testNumber + " " + testName, true);
@@ -252,8 +248,6 @@ void certgen_key_config_test (bool verbose)
 
             configSi >>= keyConf;
 
-            std::cout << keyConf;
-
             printf (" *<=  Test #%s > OK\n", testNumber.c_str ());
             testsResults.emplace_back (" Test #" + testNumber + " " + testName, true);
         }
@@ -293,8 +287,6 @@ void certgen_key_config_test (bool verbose)
             KeyConfig keyConf;
 
             configSi >>= keyConf;
-
-            std::cout << keyConf;
 
             printf (" *<=  Test #%s > OK\n", testNumber.c_str ());
             testsResults.emplace_back (" Test #" + testNumber + " " + testName, true);
