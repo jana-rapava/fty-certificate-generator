@@ -27,8 +27,8 @@
 #include <memory>
 #include <ostream>
 
-// #include "certgen_certificate_config.h"
 #include "certgen_key_config.h"
+#include "certgen_certificate_config.h"
 #include "certgen_storage_config.h"
 #include "certgen_certificate_generator_config.h"
 
@@ -44,7 +44,7 @@ namespace certgen
 
         const std::string       & version() const { return m_version; };
         const KeyConfig         & keyConf() const { return m_keyConf; };
-        // const CertificateConfig & certConf() const { return certConf; };
+        const CertificateConfig & certConf() const { return m_certConf; };
         const StorageConfig     & storageConf() const { return m_storageConf; };
 
         void load(const cxxtools::SerializationInfo& si);
@@ -52,7 +52,7 @@ namespace certgen
     private:
         std::string         m_version;
         KeyConfig           m_keyConf;
-        // CertificateConfig   m_certConf;
+        CertificateConfig   m_certConf;
         StorageConfig       m_storageConf;
         
     };

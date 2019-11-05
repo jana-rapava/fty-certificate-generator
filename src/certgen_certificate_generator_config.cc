@@ -35,7 +35,7 @@ namespace certgen
     {
         si.getMember("version")     >>= m_version;
         si.getMember("key")         >>= m_keyConf;
-        // si.getMember("certificate") >>= *(m_certConf)
+        si.getMember("certificate") >>= m_certConf;
         si.getMember("storage")     >>= m_storageConf;
     }
 
