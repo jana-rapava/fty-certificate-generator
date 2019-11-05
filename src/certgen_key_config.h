@@ -47,10 +47,8 @@ namespace certgen
         // TODO set as private?
         void load(const cxxtools::SerializationInfo& si);
 
-        const std::string & storageType() const { return m_keyType; }
+        const std::string & keyType() const { return m_keyType; }
         const KeyConfigParamsPtr & params() const { return m_params; }
-
-        friend std::ostream& operator<<(std::ostream& os, const KeyConfig & k);
     };
     void operator>>= (const cxxtools::SerializationInfo& si, KeyConfig & config);
     std::ostream& operator<<(std::ostream& os, const KeyConfig & k);

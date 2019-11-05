@@ -55,8 +55,8 @@ namespace certgen
 
     std::ostream& operator<<(std::ostream& os, const KeyConfig & k)
     {
-        os << "Key type: " << k.m_keyType << std::endl;
-        os << "Key params: " << std::endl << k.m_params->toString();
+        os << "Key type: " << k.keyType() << std::endl;
+        os << "Key params: " << std::endl << k.params()->toString();
 
         return os;
     }
