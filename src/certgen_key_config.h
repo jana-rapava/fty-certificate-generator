@@ -25,23 +25,15 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <ostream>
 
 #include "cxxtools/serializationinfo.h"
+#include "cxxtools/jsondeserializer.h"
 
 namespace certgen
 {
     class KeyConfigParams;
     using KeyConfigParamsPtr = std::unique_ptr<KeyConfigParams>;
-
-    class KeyConfigParams
-    {
-    public:
-        virtual ~KeyConfigParams() = default;
-        virtual void load(const cxxtools::SerializationInfo& si) = 0;
-
-        static KeyConfigParamsPtr create(const std::string & storageType);
-    };
-    void operator>>= (const cxxtools::SerializationInfo& si, KeyConfigParams & config);
 
     class KeyConfig
     {
@@ -52,12 +44,26 @@ namespace certgen
     public:
         KeyConfig() = default;
 
+        // TODO set as private?
         void load(const cxxtools::SerializationInfo& si);
 
-        const std::string & storageType() const { return m_keyType; }
-        const KeyConfigParamsPtr & params() const { return m_params; } 
+        const std::string & keyType() const { return m_keyType; }
+        const KeyConfigParamsPtr & params() const { return m_params; }
     };
     void operator>>= (const cxxtools::SerializationInfo& si, KeyConfig & config);
+    std::ostream& operator<<(std::ostream& os, const KeyConfig & k);
+
+    class KeyConfigParams
+    {
+    public:
+        virtual ~KeyConfigParams() = default;
+        virtual void load(const cxxtools::SerializationInfo& si) = 0;
+
+        virtual std::string toString() const = 0;
+
+        static KeyConfigParamsPtr create(const std::string & storageType);
+    };
+    void operator>>= (const cxxtools::SerializationInfo& si, KeyConfigParams & config);
 
     class KeyConfigRsaParams : public KeyConfigParams
     {
@@ -66,6 +72,7 @@ namespace certgen
 
     public:
         void load(const cxxtools::SerializationInfo& si) override;
+        std::string toString() const override;
         int rsaLength() { return m_rsaLength; }
     };
 
@@ -76,6 +83,7 @@ namespace certgen
 
     public:
         void load(const cxxtools::SerializationInfo& si) override;
+        std::string toString() const override;
         const std::string & ecCurveType() const { return m_ecCurveType; }
     };
 

@@ -36,6 +36,8 @@ namespace certgen
             uint8_t m_certificateLevel;
     };
 
+    void operator>>= (const cxxtools::SerializationInfo& si, CertificateConfig & config);
+
 } // namescpace certgen
 
 //  Self test of this class

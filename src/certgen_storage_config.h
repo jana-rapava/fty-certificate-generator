@@ -25,23 +25,15 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <ostream>
 
 #include "cxxtools/serializationinfo.h"
+#include "cxxtools/jsondeserializer.h"
 
 namespace certgen
 {
     class StorageConfigParams;
     using StorageConfigParamsPtr = std::unique_ptr<StorageConfigParams>;
-
-    class StorageConfigParams
-    {
-    public:
-        virtual ~StorageConfigParams() = default;
-        virtual void load(const cxxtools::SerializationInfo& si) = 0;
-
-        static StorageConfigParamsPtr create(const std::string & storageType);
-    };
-    void operator>>= (const cxxtools::SerializationInfo& si, StorageConfigParams & config);
 
     class StorageConfig
     {
@@ -57,9 +49,22 @@ namespace certgen
 
         const std::string & storageType() const { return m_storageType; }
         bool isPermanent() const { return m_permanent; }
-        const StorageConfigParamsPtr & params() const { return m_params; } 
+        const StorageConfigParamsPtr & params() const { return m_params; }
     };
     void operator>>= (const cxxtools::SerializationInfo& si, StorageConfig & config);
+    std::ostream& operator<<(std::ostream& os, const StorageConfig & s);
+
+    class StorageConfigParams
+    {
+    public:
+        virtual ~StorageConfigParams() = default;
+        virtual void load(const cxxtools::SerializationInfo& si) = 0;
+
+        virtual std::string toString() const = 0;
+
+        static StorageConfigParamsPtr create(const std::string & storageType);
+    };
+    void operator>>= (const cxxtools::SerializationInfo& si, StorageConfigParams & config);
 
     class StorageConfigSecwParams : public StorageConfigParams
     {
@@ -70,6 +75,8 @@ namespace certgen
     public:
 
         void load(const cxxtools::SerializationInfo& si) override;
+
+        std::string toString() const override;
 
         const std::string & portfolio() const { return m_portfolio; }
         const std::string & documentName() const { return m_documentName; }
