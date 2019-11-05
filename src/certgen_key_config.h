@@ -44,7 +44,6 @@ namespace certgen
     public:
         KeyConfig() = default;
 
-        // TODO set as private?
         void load(const cxxtools::SerializationInfo& si);
 
         const std::string & keyType() const { return m_keyType; }
