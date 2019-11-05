@@ -50,8 +50,6 @@ namespace certgen
         const std::string & storageType() const { return m_storageType; }
         bool isPermanent() const { return m_permanent; }
         const StorageConfigParamsPtr & params() const { return m_params; }
-
-        // friend std::ostream& operator<<(std::ostream& os, const StorageConfig & s);
     };
     void operator>>= (const cxxtools::SerializationInfo& si, StorageConfig & config);
     std::ostream& operator<<(std::ostream& os, const StorageConfig & s);
