@@ -2,7 +2,7 @@ Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: fty-certificate-generator
 
 Files: *
-Copyright: 2015- fty-certificate-generator Developers <eatonipcopensource@eaton.com>
+Copyright: 2019- fty-certificate-generator Developers <eatonipcopensource@eaton.com>
 License: fty-certificate-generator_license
  Copyright (C) 2014 - 2019 Eaton
  .

@@ -255,7 +255,7 @@ default|default-Werror|default-with-docs|valgrind|clang-format-check)
         BASE_PWD=${PWD}
         echo "`date`: INFO: Building prerequisite 'cxxtools' from Git repository..." >&2
         cd ./tmp-deps
-        $CI_TIME git clone --quiet --depth 1 -b release/IPM-2.0.0 https://github.com/42ity/cxxtools.git cxxtools
+        $CI_TIME git clone --quiet --depth 1 -b 2.2-FTY-master https://github.com/42ity/cxxtools.git cxxtools
         cd ./cxxtools
         CCACHE_BASEDIR=${PWD}
         export CCACHE_BASEDIR
@@ -331,7 +331,7 @@ default|default-Werror|default-with-docs|valgrind|clang-format-check)
         BASE_PWD=${PWD}
         echo "`date`: INFO: Building prerequisite 'libsodium' from Git repository..." >&2
         cd ./tmp-deps
-        $CI_TIME git clone --quiet --depth 1 -b release/IPM-2.0.0 https://github.com/42ity/libsodium.git libsodium
+        $CI_TIME git clone --quiet --depth 1 -b 1.0.5-FTY-master https://github.com/42ity/libsodium.git libsodium
         cd ./libsodium
         CCACHE_BASEDIR=${PWD}
         export CCACHE_BASEDIR
@@ -364,7 +364,7 @@ default|default-Werror|default-with-docs|valgrind|clang-format-check)
         BASE_PWD=${PWD}
         echo "`date`: INFO: Building prerequisite 'libzmq' from Git repository..." >&2
         cd ./tmp-deps
-        $CI_TIME git clone --quiet --depth 1 -b release/IPM-2.0.0 https://github.com/42ity/libzmq.git libzmq
+        $CI_TIME git clone --quiet --depth 1 -b 4.2.0-FTY-master https://github.com/42ity/libzmq.git libzmq
         cd ./libzmq
         CCACHE_BASEDIR=${PWD}
         export CCACHE_BASEDIR
@@ -397,7 +397,7 @@ default|default-Werror|default-with-docs|valgrind|clang-format-check)
         BASE_PWD=${PWD}
         echo "`date`: INFO: Building prerequisite 'czmq' from Git repository..." >&2
         cd ./tmp-deps
-        $CI_TIME git clone --quiet --depth 1 -b release/IPM-2.0.0 https://github.com/42ity/czmq.git czmq
+        $CI_TIME git clone --quiet --depth 1 -b v3.0.2-FTY-master https://github.com/42ity/czmq.git czmq
         cd ./czmq
         CCACHE_BASEDIR=${PWD}
         export CCACHE_BASEDIR
@@ -430,7 +430,7 @@ default|default-Werror|default-with-docs|valgrind|clang-format-check)
         BASE_PWD=${PWD}
         echo "`date`: INFO: Building prerequisite 'malamute' from Git repository..." >&2
         cd ./tmp-deps
-        $CI_TIME git clone --quiet --depth 1 -b release/IPM-2.0.0 https://github.com/42ity/malamute.git malamute
+        $CI_TIME git clone --quiet --depth 1 -b 1.0-FTY-master https://github.com/42ity/malamute.git malamute
         cd ./malamute
         CCACHE_BASEDIR=${PWD}
         export CCACHE_BASEDIR
@@ -463,7 +463,7 @@ default|default-Werror|default-with-docs|valgrind|clang-format-check)
         BASE_PWD=${PWD}
         echo "`date`: INFO: Building prerequisite 'fty-common' from Git repository..." >&2
         cd ./tmp-deps
-        $CI_TIME git clone --quiet --depth 1 -b release/IPM-2.0.0 https://github.com/42ity/fty-common.git fty-common
+        $CI_TIME git clone --quiet --depth 1 -b master https://github.com/42ity/fty-common.git fty-common
         cd ./fty-common
         CCACHE_BASEDIR=${PWD}
         export CCACHE_BASEDIR
@@ -496,8 +496,41 @@ default|default-Werror|default-with-docs|valgrind|clang-format-check)
         BASE_PWD=${PWD}
         echo "`date`: INFO: Building prerequisite 'fty-common-mlm' from Git repository..." >&2
         cd ./tmp-deps
-        $CI_TIME git clone --quiet --depth 1 -b release/IPM-2.0.0 https://github.com/42ity/fty-common-mlm.git fty-common-mlm
+        $CI_TIME git clone --quiet --depth 1 -b master https://github.com/42ity/fty-common-mlm.git fty-common-mlm
         cd ./fty-common-mlm
+        CCACHE_BASEDIR=${PWD}
+        export CCACHE_BASEDIR
+        git --no-pager log --oneline -n1
+        if [ -e autogen.sh ]; then
+            $CI_TIME ./autogen.sh 2> /dev/null
+        fi
+        if [ -e buildconf ]; then
+            $CI_TIME ./buildconf 2> /dev/null
+        fi
+        if [ ! -e autogen.sh ] && [ ! -e buildconf ] && [ ! -e ./configure ] && [ -s ./configure.ac ]; then
+            $CI_TIME libtoolize --copy --force && \
+            $CI_TIME aclocal -I . && \
+            $CI_TIME autoheader && \
+            $CI_TIME automake --add-missing --copy && \
+            $CI_TIME autoconf || \
+            $CI_TIME autoreconf -fiv
+        fi
+        $CI_TIME ./configure "${CONFIG_OPTS[@]}"
+        $CI_TIME make -j4
+        $CI_TIME make install
+        cd "${BASE_PWD}"
+    fi
+
+    # Start of recipe for dependency: fty-common-socket
+    if ! (command -v dpkg-query >/dev/null 2>&1 && dpkg-query --list libfty_common_socket-dev >/dev/null 2>&1) || \
+           (command -v brew >/dev/null 2>&1 && brew ls --versions fty-common-socket >/dev/null 2>&1) \
+    ; then
+        echo ""
+        BASE_PWD=${PWD}
+        echo "`date`: INFO: Building prerequisite 'fty-common-socket' from Git repository..." >&2
+        cd ./tmp-deps
+        $CI_TIME git clone --quiet --depth 1 -b master https://github.com/42ity/fty-common-socket.git fty-common-socket
+        cd ./fty-common-socket
         CCACHE_BASEDIR=${PWD}
         export CCACHE_BASEDIR
         git --no-pager log --oneline -n1
@@ -529,7 +562,7 @@ default|default-Werror|default-with-docs|valgrind|clang-format-check)
         BASE_PWD=${PWD}
         echo "`date`: INFO: Building prerequisite 'fty-security-wallet' from Git repository..." >&2
         cd ./tmp-deps
-        $CI_TIME git clone --quiet --depth 1 -b release/IPM-2.0.0 https://github.com/42ity/fty-security-wallet.git fty-security-wallet
+        $CI_TIME git clone --quiet --depth 1 -b master https://github.com/42ity/fty-security-wallet.git fty-security-wallet
         cd ./fty-security-wallet
         CCACHE_BASEDIR=${PWD}
         export CCACHE_BASEDIR

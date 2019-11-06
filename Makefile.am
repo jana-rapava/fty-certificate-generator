@@ -23,11 +23,12 @@ AM_CPPFLAGS = \
     ${malamute_CFLAGS} \
     ${fty_common_CFLAGS} \
     ${fty_common_mlm_CFLAGS} \
+    ${fty_common_socket_CFLAGS} \
     ${fty_security_wallet_CFLAGS} \
     -D__STDC_FORMAT_MACROS \
     -I$(srcdir)/include
 
-project_libs = ${log4cplus_LIBS} ${fty_common_logging_LIBS} ${cxxtools_LIBS} ${openssl_LIBS} ${fty_lib_certificate_LIBS} ${libsodium_LIBS} ${libzmq_LIBS} ${czmq_LIBS} ${malamute_LIBS} ${fty_common_LIBS} ${fty_common_mlm_LIBS} ${fty_security_wallet_LIBS}
+project_libs = ${log4cplus_LIBS} ${fty_common_logging_LIBS} ${cxxtools_LIBS} ${openssl_LIBS} ${fty_lib_certificate_LIBS} ${libsodium_LIBS} ${libzmq_LIBS} ${czmq_LIBS} ${malamute_LIBS} ${fty_common_LIBS} ${fty_common_mlm_LIBS} ${fty_common_socket_LIBS} ${fty_security_wallet_LIBS}
 
 SUBDIRS = doc
 SUBDIRS += include
@@ -59,6 +60,7 @@ EXTRA_DIST += \
     Findmalamute.cmake \
     Findfty_common.cmake \
     Findfty_common_mlm.cmake \
+    Findfty_common_socket.cmake \
     Findfty_security_wallet.cmake \
     builds/cmake/Modules/ClangFormat.cmake \
     builds/cmake/clang-format-check.sh.in \
