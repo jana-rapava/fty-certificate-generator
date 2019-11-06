@@ -510,30 +510,7 @@ AS_IF([test x"${search_libfty_lib_certificate}" = xyes], [
         found_pkgconfig="libfty_lib_certificate"
     ],
     [
-        AC_MSG_NOTICE([Package libfty_lib_certificate not found; falling back to defined compilability tests])
-
-        fty_lib_certificate_synthetic_cflags=""
-        fty_lib_certificate_synthetic_libs="-lfty-lib-certificate"
-
-        if test -n "${with_libfty_lib_certificate}" && test x"${with_libfty_lib_certificate}" != xyes && test x"${with_libfty_lib_certificate}" != xno; then
-            if test -r "${with_libfty_lib_certificate}/include/fty-lib-certificate.h"; then
-                fty_lib_certificate_synthetic_cflags="-I${with_libfty_lib_certificate}/include"
-                fty_lib_certificate_synthetic_libs="-L${with_libfty_lib_certificate}/lib -lfty-lib-certificate"
-            else
-            AC_MSG_ERROR([Header file ${with_libfty_lib_certificate}/include/fty-lib-certificate.h was not found. Please check libfty_lib_certificate prefix])
-            fi
-        else
-            AC_CHECK_HEADER([fty-lib-certificate.h], [],
-            AC_MSG_ERROR([Header file fty-lib-certificate.h was not found in default search paths])
-                )
-        fi
-
-        AC_CHECK_LIB([fty-lib-certificate], [fty_lib_certificae_selftest],
-            [
-                was_fty_lib_certificate_check_lib_detected=yes
-                PKGCFG_LIBS_PRIVATE="$PKGCFG_LIBS_PRIVATE -lfty-lib-certificate"
-            ],
-            [AC_MSG_ERROR([cannot link with -lfty-lib-certificate, install libfty_lib_certificate])])
+        AC_MSG_WARN([Attribute 'test' is not set on zproject dependency 'fty-lib-certificate' - please ensure it is set])
     ])
 
 dnl END of PKG_CHECK_MODULES and/or direct tests for libfty_lib_certificate
