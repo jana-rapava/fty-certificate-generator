@@ -80,6 +80,8 @@
 
     <!-- fty-lib-certificate -->
     <use project = "fty-lib-certificate" libname = "libfty_lib_certificate"
+        header = "fty-lib-certificate.h"
+        test = "fty_lib_certificate_selftest"
         repository = "https://github.com/42ity/fty-lib-certificate.git"
         release = "master" >
 
