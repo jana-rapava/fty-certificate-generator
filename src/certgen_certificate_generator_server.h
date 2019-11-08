@@ -48,10 +48,6 @@ namespace certgen
             std::string handleGenerateCSR(const fty::Payload & params);
             std::string handleImportCertificate(const fty::Payload & params);
 
-            // static helpers
-            std::list<std::string> getSystemIPs (int family);
-            std::list<std::string> getSystemDomainNames ();
-
         public:
             //Command list
             static constexpr const char* GENERATE_SELFSIGNED_CERTIFICATE = "GENERATE_SELFSIGNED_CERTIFICATE";
