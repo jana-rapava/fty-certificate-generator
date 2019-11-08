@@ -263,10 +263,7 @@ namespace certgen
                 return Keys::generateEC (ECKeyType::PRIME256V1);
             }
         }
-        else
-        {
-            throw std::runtime_error ("Invalid key type");
-        }
+        throw std::runtime_error ("Invalid key type");
     }
 
     // TODO: ask security wallet to store the certificate
