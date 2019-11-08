@@ -22,8 +22,36 @@
 #ifndef CERTGEN_CERTIFICATE_GENERATOR_SERVER_H_INCLUDED
 #define CERTGEN_CERTIFICATE_GENERATOR_SERVER_H_INCLUDED
 
+#include <functional>
+#include <fty_common_sync_server.h>
+
 namespace certgen
 {
+    using Command   = std::string;
+
+    using FctCommandHandler = std::function<std::string (const std::vector<std::string> &)>;
+
+    class CertificateGeneratorServer final : public fty::SyncServer
+    {
+        public:
+            explicit CertificateGeneratorServer();
+            fty::Payload handleRequest(const fty::Sender & sender, const fty::Payload & payload) override;
+
+        private:
+            // List of supported commands with a reference to the handler for this command.
+            std::map<Command, FctCommandHandler> m_supportedCommands;
+
+            // Handlers for all supported commands
+            std::string handleGenerateSelfsignedCertificate(const fty::Payload & params);
+            std::string handleGenerateCSR(const fty::Payload & params);
+            std::string handleImportCertificate(const fty::Payload & params);
+
+        public:
+            //Command list
+            static constexpr const char* GENERATE_SELFSIGNED_CERTIFICATE = "GENERATE_SELFSIGNED_CERTIFICATE";
+            static constexpr const char* GENERATE_CSR = "GENERATE_CSR";
+            static constexpr const char* IMPORT_CERTIFICATE = "IMPORT_CERTIFICATE";
+    };
 
 } // namescpace certgen
 

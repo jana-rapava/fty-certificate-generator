@@ -78,6 +78,23 @@
         release = "2.2-FTY-master"
         />
 
+    <use project = "fty-common" libname = "libfty_common" header = "fty_common.h"
+        repository = "https://github.com/42ity/fty-common.git"
+        release = "master"
+        test = "fty_common_selftest" >
+
+        <use project = "fty-common-logging" libname = "libfty_common_logging" header = "fty_log.h"
+            repository = "https://github.com/42ity/fty-common-logging.git"
+            release = "master"
+            test = "fty_common_logging_selftest" >
+
+            <use project = "log4cplus" header = "log4cplus/logger.h" test = "appender_test"
+                repository = "https://github.com/42ity/log4cplus.git"
+                release = "master"
+                />
+       </use>
+   </use>
+
     <!-- fty-lib-certificate -->
     <use project = "fty-lib-certificate" libname = "libfty_lib_certificate"
         header = "fty-lib-certificate.h"
@@ -259,7 +276,7 @@
     <class name = "certgen_certificate_config" private = "1"/>
     <class name = "certgen_key_config" private = "1" />
     <class name = "certgen_storage_config" private = "1"/>
-    
+
     <class name = "certgen_accessor" selftest = "0"/>
 
     <class name = "fty-certificate-generator-agent"/>

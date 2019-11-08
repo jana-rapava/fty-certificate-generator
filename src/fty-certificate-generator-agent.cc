@@ -28,13 +28,23 @@
 
 #include "fty_certificate_generator_classes.h"
 
-//  Structure of our class
-
-namespace certgen
+void fty_certificate_generator_agent(zsock_t *pipe, void *args)
 {
+    using Arguments = std::map<std::string, std::string>;
 
-} // namescpace certgen
+    const Arguments & arguments = *static_cast<Arguments*>(args);
 
+    //create the server
+    certgen::CertificateGeneratorServer server;
+
+    //launch the agent
+    mlm::MlmBasicMailboxServer agent(  pipe,
+                                       server,
+                                       arguments.at("AGENT_NAME"),
+                                       arguments.at("ENDPOINT")
+                                    );
+    agent.mainloop();
+}
 
 //  --------------------------------------------------------------------------
 //  Self test of this class

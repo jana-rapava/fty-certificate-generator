@@ -29,6 +29,9 @@ namespace certgen
     {
         public:
             void deserialize (const cxxtools::SerializationInfo & si);
+            const std::string getSignatureType() const { return m_signatureType; }
+            int getValidityOffset() const { return m_validityOffset; }
+            uint32_t getValidity() const { return m_validity; }
         private:
             std::string m_signatureType;
             uint32_t m_validity;
@@ -39,6 +42,7 @@ namespace certgen
     void operator>>= (const cxxtools::SerializationInfo& si, CertificateConfig & config);
 
 } // namescpace certgen
+
 
 //  Self test of this class
  void

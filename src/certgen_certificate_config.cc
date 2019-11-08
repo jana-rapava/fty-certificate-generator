@@ -42,12 +42,13 @@ namespace certgen
         si.getMember("certificate_level") >>= m_certificateLevel;
     }
 
-    void operator>>= (const cxxtools::SerializationInfo& si, CertificateConfig & config)
+    void operator>>= (const cxxtools::SerializationInfo &si, CertificateConfig & config)
     {
-        config.deserialize(si);
+        config.deserialize (si);
     }
-
 } // namescpace certgen
+
+
 
 //  --------------------------------------------------------------------------
 //  Self test of this class
@@ -60,7 +61,58 @@ certgen_certificate_config_test (bool verbose)
     printf (" * certgen_certificate_config: ");
 
     //  @selftest
-    //  Simple create/destroy test
+    //  Simple deserialize test
+    {
+    std::string configFilePath (SELFTEST_DIR_RO + std::string ("/certificate.config"));
+    std::ifstream configFile (configFilePath);
+
+    if (configFile)
+    {
+        std::stringstream configJson;
+        configJson << configFile.rdbuf();
+        configFile.close ();
+
+        cxxtools::SerializationInfo configSi;
+        cxxtools::JsonDeserializer deserializer (configJson);
+        deserializer.deserialize (configSi);
+
+        certgen::CertificateConfig config;
+        configSi >>= config;
+
+        assert (config.getSignatureType() == "SHA256");
+        assert (config.getValidity() == 730);
+    }
+    }
+
+    {
+    std::string configFilePath (SELFTEST_DIR_RO + std::string ("/certificate.config.bad"));
+    std::ifstream configFile (configFilePath);
+
+    if (configFile)
+    {
+        std::stringstream configJson;
+        configJson << configFile.rdbuf();
+        configFile.close ();
+
+        try {
+            cxxtools::SerializationInfo configSi;
+            cxxtools::JsonDeserializer deserializer (configJson);
+            deserializer.deserialize (configSi);
+
+            certgen::CertificateConfig config;
+            configSi >>= config;
+
+            assert (config.getSignatureType() == "SHA256");
+            assert (config.getValidity() == 730);
+        }
+        catch (cxxtools::SerializationMemberNotFound &e)
+        {
+            assert (streq (e.what(), "Missing info for 'validity'"));
+        }
+    }
+    }
     //  @end
     printf ("OK\n");
+
+
 }
